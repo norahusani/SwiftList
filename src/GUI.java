@@ -3,7 +3,10 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,7 +21,6 @@ public class GUI extends JPanel {
 
 	public GUI() {
 		super();
-		// checking to see if I can commit
 
 		// set up the buttons
 		FlowLayout experimentLayout = new FlowLayout();
@@ -43,10 +45,17 @@ public class GUI extends JPanel {
 		setSize(200, 200);
 		setVisible(true);
 		setLayout(new BorderLayout());
-		JLabel background = new JLabel(new ImageIcon(
-				"/Users/sillyjokes83/Desktop/swift.png"));
-		add(background);
-		background.setLayout(new FlowLayout());
+		// Image to show
+		BufferedImage myPicture = null;
+		try {
+			myPicture = ImageIO.read(getClass()
+					.getResource("/images/Swift.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		JLabel headerImage = new JLabel(new ImageIcon(myPicture));
+		headerImage.setBounds(100, 60, 200, 150);
+		this.add(headerImage);
 
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
