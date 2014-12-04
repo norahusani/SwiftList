@@ -18,6 +18,8 @@ public class GUI extends JPanel {
 
 	public GUI() {
 		super();
+		// checking to see if I can commit
+
 		// set up the buttons
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
