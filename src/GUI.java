@@ -17,14 +17,14 @@ public class GUI extends JPanel {
 
 	static JFrame frame;
 	private JButton btn1, btn2, btn3;
-	boolean mainMenu = true;
 
 	public GUI() {
 		super();
 
-		// set up the buttons
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
+
+		// set up the buttons
 		btn1 = new JButton("RANDOM SWIFTLIST");
 		int buttonHeight = 50;
 		int buttonWidth = 200;
@@ -42,9 +42,12 @@ public class GUI extends JPanel {
 		btn2.setBorder(null);
 		this.add(btn1);
 		this.add(btn2);
+
+		// size of frame
 		setSize(200, 200);
 		setVisible(true);
 		setLayout(new BorderLayout());
+
 		// Image to show
 		BufferedImage myPicture = null;
 		try {
@@ -57,24 +60,11 @@ public class GUI extends JPanel {
 		headerImage.setBounds(100, 60, 200, 150);
 		this.add(headerImage);
 
+		// set up button action
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
-
 		ButtonResponder br2 = new ButtonResponder();
 		btn2.addActionListener(br2);
-
-		if (mainMenu == false) {
-			buttonHeight = 50;
-			buttonWidth = 100;
-			btn3 = new JButton("MAIN MENU");
-			btn3.setSize(5, 5);
-			btn3.setBounds(15, 10, buttonWidth, buttonHeight);
-			btn3.setBackground(new Color(206, 184, 95));
-			btn3.setOpaque(true);
-			btn3.setBorder(null);
-			this.add(btn3);
-			mainMenu = true;
-		}
 
 	}
 
@@ -87,7 +77,6 @@ public class GUI extends JPanel {
 
 				removeAll();
 				revalidate();
-				mainMenu = false;
 				repaint();
 				// instead of repaint call new class
 
@@ -97,7 +86,6 @@ public class GUI extends JPanel {
 
 				removeAll();
 				revalidate();
-				mainMenu = false;
 				repaint();
 				// instead of repaint call new class
 			}
