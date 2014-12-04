@@ -78,6 +78,7 @@ public class GUI extends JPanel {
 				removeAll();
 				revalidate();
 				repaint();
+				new SimplePlayer();
 				// instead of repaint call new class
 
 			}
