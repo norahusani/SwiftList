@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import net.codejava.sound.SimplePlayer;
+
 public class GUI extends JPanel {
 
 	static JFrame frame;
