@@ -13,37 +13,30 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class GUI extends JPanel {
+public class RandomSwiftList extends JPanel {
 
 	static JFrame frame;
 	private JButton btn1, btn2, btn3;
-	RandomSwiftList rand;
+	private JLabel label1;
 
-	public GUI() {
+	public RandomSwiftList() {
 		super();
 
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
 
 		// set up the buttons
-		btn1 = new JButton("RANDOM SWIFTLIST");
+		btn1 = new JButton("HOME");
 		int buttonHeight = 50;
 		int buttonWidth = 200;
-		btn1.setBounds(280, 10, buttonWidth, buttonHeight);
+		btn1.setBounds(200, 10, buttonWidth, buttonHeight);
 		btn1.setBackground(new Color(206, 184, 95));
 		btn1.setOpaque(true);
 		btn1.setBorder(null);
-		btn2 = new JButton("SWIFTLIST BASED ON MOOD");
-		btn2.setSize(5, 5);
-		buttonHeight = 50;
-		buttonWidth = 200;
-		btn2.setBounds(520, 10, buttonWidth, buttonHeight);
-		btn2.setBackground(new Color(206, 184, 95));
-		btn2.setOpaque(true);
-		btn2.setBorder(null);
 		this.add(btn1);
-		this.add(btn2);
 
+		// set up label
+		label1 = new JLabel("Enjoy your SwiftList!", JLabel.CENTER);
 		// size of frame
 		setSize(200, 200);
 		setVisible(true);
@@ -52,8 +45,8 @@ public class GUI extends JPanel {
 		// Image to show
 		BufferedImage myPicture = null;
 		try {
-			myPicture = ImageIO.read(getClass()
-					.getResource("/images/Swift.png"));
+			myPicture = ImageIO.read(getClass().getResource(
+					"/images/Random.png"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -64,8 +57,19 @@ public class GUI extends JPanel {
 		// set up button action
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
-		ButtonResponder br2 = new ButtonResponder();
-		btn2.addActionListener(br2);
+
+		// play the song
+		String filename = "/Users/sillyjokes83/desktop/LoveStory.mp3";
+		MP3 mp3 = new MP3(filename);
+		mp3.play();
+
+		// when the computation is done, stop playing it
+		mp3.close();
+
+		// play from the beginning
+		mp3 = new MP3(filename);
+		mp3.play();
+		// instead of repaint call new class
 
 	}
 
@@ -76,16 +80,7 @@ public class GUI extends JPanel {
 
 			if (e.getSource() == btn1) {
 
-				removeAll();
-				revalidate();
-				repaint();
-				rand = new RandomSwiftList();
-				rand.setVisible(true);
-				// CloseFrame();
-
 			}
-
-			repaint();
 
 		}
 
