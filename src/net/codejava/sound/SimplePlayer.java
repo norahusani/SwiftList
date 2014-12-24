@@ -74,9 +74,12 @@ public class SimplePlayer {
 	}
 
 	public static void main(String[] args) {
-		String audioFilePath = "/desktop/14_Wonderland.wav";
-		SimplePlayer player = new SimplePlayer();
-		player.play(audioFilePath);
+		String file = "SOME//SONGFILE//PATH";
+		// FileInputStream fis = new FileInputStream(file);
+		// BufferedInputStream bis = new BufferedInputStream(fis);
+		// player = new Player(bis);
+
+		// player.play();
 	}
 
 }
