@@ -81,7 +81,7 @@ public class GUI extends JPanel {
 				repaint();
 				rand = new RandomSwiftList();
 				rand.setVisible(true);
-				// CloseFrame();
+				CloseFrame();
 
 			}
 
