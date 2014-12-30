@@ -17,7 +17,8 @@ public class GUI extends JPanel {
 
 	static JFrame frame;
 	private JButton btn1, btn2, btn3;
-	RandomSwiftList rand;
+
+	// RandomSwiftList rand;
 
 	public GUI() {
 		super();
@@ -76,11 +77,9 @@ public class GUI extends JPanel {
 
 			if (e.getSource() == btn1) {
 
-				removeAll();
-				revalidate();
-				repaint();
-				rand = new RandomSwiftList();
+				RandomSwiftList rand = new RandomSwiftList();
 				rand.setVisible(true);
+				rand.main(null);
 				CloseFrame();
 
 			}

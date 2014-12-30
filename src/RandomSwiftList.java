@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 public class RandomSwiftList extends JPanel {
 
-	static JFrame frame;
+	static JFrame frame1;
 	private JButton btn1, btn2, btn3;
 	private JLabel label1;
 
@@ -58,19 +58,6 @@ public class RandomSwiftList extends JPanel {
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
 
-		// play the song
-		String filename = "/Users/sillyjokes83/desktop/LoveStory.mp3";
-		MP3 mp3 = new MP3(filename);
-		mp3.play();
-
-		// when the computation is done, stop playing it
-		mp3.close();
-
-		// play from the beginning
-		mp3 = new MP3(filename);
-		mp3.play();
-		// instead of repaint call new class
-
 	}
 
 	public class ButtonResponder implements ActionListener {
@@ -87,19 +74,32 @@ public class RandomSwiftList extends JPanel {
 	}
 
 	private void CloseFrame() {
-		frame.dispose();
+		frame1.dispose();
 	}
 
 	public static void main(String[] args) {
 
-		frame = new JFrame("SwiftList");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(new GUI());
-		frame.setBounds(300, 500, 1000, 700);
-		frame.setBackground(new Color(100, 0, 60));
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-		frame.setResizable(true);
+		frame1 = new JFrame("SwiftList");
+		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame1.add(new RandomSwiftList());
+		frame1.setBounds(300, 500, 1000, 700);
+		frame1.setBackground(new Color(100, 0, 60));
+		frame1.setLocationRelativeTo(null);
+		frame1.setVisible(true);
+		frame1.setResizable(true);
+
+		// play the song
+		String filename = "/Users/sillyjokes83/desktop/LoveStory.mp3";
+		MP3 mp3 = new MP3(filename);
+		mp3.play();
+
+		// when the computation is done, stop playing it
+		mp3.close();
+
+		// play from the beginning
+		mp3 = new MP3(filename);
+		mp3.play();
+		// instead of repaint call new class
 
 	}
 
