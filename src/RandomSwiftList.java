@@ -18,6 +18,7 @@ public class RandomSwiftList extends JPanel {
 	static JFrame frame1;
 	private JButton btn1, btn2, btn3;
 	private JLabel label1;
+	public static MP3 mp3;
 
 	public RandomSwiftList() {
 		super();
@@ -71,6 +72,7 @@ public class RandomSwiftList extends JPanel {
 				home.setVisible(true);
 				home.main(null);
 				CloseFrame();
+				mp3.close();
 
 			}
 
@@ -97,7 +99,7 @@ public class RandomSwiftList extends JPanel {
 
 		// play the song
 		String filename = "/Users/sillyjokes83/desktop/LoveStory.mp3";
-		MP3 mp3 = new MP3(filename);
+		mp3 = new MP3(filename);
 		mp3.play();
 
 		// when the computation is done, stop playing it
