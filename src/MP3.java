@@ -39,6 +39,8 @@ public class MP3 {
 	// play the MP3 file to the sound card
 	public void play() {
 		try {
+			// InputStream stream = MP3.class.getClassLoader()
+			// .getResourceAsStream("/resources/LoveStory.mp3");
 			FileInputStream fis = new FileInputStream(filename);
 			BufferedInputStream bis = new BufferedInputStream(fis);
 			player = new Player(bis);

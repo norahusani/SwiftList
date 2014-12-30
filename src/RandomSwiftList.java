@@ -67,7 +67,14 @@ public class RandomSwiftList extends JPanel {
 
 			if (e.getSource() == btn1) {
 
+				GUI home = new GUI();
+				home.setVisible(true);
+				home.main(null);
+				CloseFrame();
+
 			}
+
+			repaint();
 
 		}
 
