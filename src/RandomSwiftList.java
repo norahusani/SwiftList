@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class RandomSwiftList extends JPanel {
 
 	static JFrame frame1;
-	private JButton btn1, btn2, btn3;
+	private JButton btn1;
 	private JLabel label1;
 	public static MP3 mp3;
 
@@ -30,16 +30,14 @@ public class RandomSwiftList extends JPanel {
 		btn1 = new JButton("HOME");
 		int buttonHeight = 50;
 		int buttonWidth = 200;
-		btn1.setBounds(200, 10, buttonWidth, buttonHeight);
+		btn1.setBounds(25, 15, buttonWidth, buttonHeight);
 		btn1.setBackground(new Color(206, 184, 95));
 		btn1.setOpaque(true);
 		btn1.setBorder(null);
 		this.add(btn1);
 
-		// set up label
-		label1 = new JLabel("Enjoy your SwiftList!", JLabel.CENTER);
 		// size of frame
-		setSize(200, 200);
+		setSize(300, 300);
 		setVisible(true);
 		setLayout(new BorderLayout());
 
@@ -54,6 +52,9 @@ public class RandomSwiftList extends JPanel {
 		JLabel headerImage = new JLabel(new ImageIcon(myPicture));
 		headerImage.setBounds(100, 60, 200, 150);
 		this.add(headerImage);
+
+		// set up label
+		label1 = new JLabel("Enjoy your SwiftList!", JLabel.CENTER);
 
 		// set up button action
 		ButtonResponder br = new ButtonResponder();
