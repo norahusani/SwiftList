@@ -84,6 +84,15 @@ public class GUI extends JPanel {
 
 			}
 
+			if (e.getSource() == btn2) {
+
+				QuestionsPage question = new QuestionsPage();
+				question.setVisible(true);
+				question.main(null);
+				CloseFrame();
+
+			}
+
 			repaint();
 
 		}

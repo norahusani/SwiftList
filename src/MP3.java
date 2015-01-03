@@ -19,6 +19,7 @@
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.InputStream;
 
 import javazoom.jl.player.Player;
 
@@ -39,8 +40,9 @@ public class MP3 {
 	// play the MP3 file to the sound card
 	public void play() {
 		try {
-			// InputStream stream = MP3.class.getClassLoader()
-			// .getResourceAsStream("/resources/LoveStory.mp3");
+			InputStream stream = MP3.class.getClassLoader()
+					.getResourceAsStream("/music/LoveStory.mp3");
+
 			FileInputStream fis = new FileInputStream(filename);
 			BufferedInputStream bis = new BufferedInputStream(fis);
 			player = new Player(bis);
