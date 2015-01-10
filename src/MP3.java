@@ -44,7 +44,8 @@ public class MP3 {
 					.getResourceAsStream("/music/LoveStory.mp3");
 
 			FileInputStream fis = new FileInputStream(filename);
-			BufferedInputStream bis = new BufferedInputStream(fis);
+			BufferedInputStream bis = new BufferedInputStream(stream);
+			bis.close();
 			player = new Player(bis);
 		} catch (Exception e) {
 			System.out.println("Problem playing file " + filename);
