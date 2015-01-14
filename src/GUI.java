@@ -79,7 +79,12 @@ public class GUI extends JPanel {
 
 				RandomSwiftList rand = new RandomSwiftList();
 				rand.setVisible(true);
-				rand.main(null);
+				try {
+					rand.main(null);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				CloseFrame();
 
 			}

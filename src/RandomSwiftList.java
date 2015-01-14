@@ -76,7 +76,12 @@ public class RandomSwiftList extends JPanel {
 				home.setVisible(true);
 				home.main(null);
 				CloseFrame();
-				mp3.close();
+				try {
+					mp3.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 
@@ -90,7 +95,7 @@ public class RandomSwiftList extends JPanel {
 		frame1.dispose();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		frame1 = new JFrame("SwiftList");
 		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,14 +108,14 @@ public class RandomSwiftList extends JPanel {
 
 		// play the song
 		String filename = "/Users/sillyjokes83/desktop/LoveStory.mp3";
-		mp3 = new MP3(filename);
+		mp3 = new MP3();
 		mp3.play();
 
 		// when the computation is done, stop playing it
 		mp3.close();
 
 		// play from the beginning
-		mp3 = new MP3(filename);
+		mp3 = new MP3();
 		mp3.play();
 		// instead of repaint call new class
 

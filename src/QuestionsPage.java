@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -60,7 +61,12 @@ public class QuestionsPage extends JPanel {
 				home.setVisible(true);
 				home.main(null);
 				CloseFrame();
-				mp3.close();
+				try {
+					mp3.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 
