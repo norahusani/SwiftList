@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class RandomSwiftList extends JPanel {
+public class MoodPage extends JPanel {
 
 	static JFrame frame1;
 	private JButton btn1;
@@ -19,15 +19,15 @@ public class RandomSwiftList extends JPanel {
 			label15;
 	public static MP3 mp3;
 
-	public RandomSwiftList() {
+	public MoodPage() {
 		super();
 
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
 
 		// set up label
-		label1 = new JLabel("Please enjoy your random SwiftList!");
-		label1.setBounds(325, 15, 700, 50);
+		label1 = new JLabel("Please enjoy your SwiftList based on your mood!");
+		label1.setBounds(275, 15, 700, 50);
 		label1.setFont(label1.getFont().deriveFont(20f));
 		this.add(label1);
 
@@ -133,13 +133,6 @@ public class RandomSwiftList extends JPanel {
 				home.setVisible(true);
 				home.main(null);
 				CloseFrame();
-				try {
-					mp3.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
 			}
 
 			repaint();
@@ -156,25 +149,12 @@ public class RandomSwiftList extends JPanel {
 
 		frame1 = new JFrame("SwiftList");
 		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame1.add(new RandomSwiftList());
+		frame1.add(new MoodPage());
 		frame1.setBounds(300, 500, 1000, 700);
 		frame1.setBackground(new Color(100, 0, 60));
 		frame1.setLocationRelativeTo(null);
 		frame1.setVisible(true);
 		frame1.setResizable(true);
-
-		// play the song
-		String filename = "/Users/sillyjokes83/desktop/LoveStory.mp3";
-		mp3 = new MP3();
-		mp3.play();
-
-		// when the computation is done, stop playing it
-		mp3.close();
-
-		// play from the beginning
-		mp3 = new MP3();
-		mp3.play();
-		// instead of repaint call new class
 
 	}
 
