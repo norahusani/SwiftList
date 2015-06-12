@@ -1,0 +1,14 @@
+
+CREATE TABLE Songs (
+	Title VARCHAR(100) NOT NULL,
+	Album VARCHAR(50) NOT NULL,
+	Id INT NOT NULL,
+	PRIMARY KEY (Id),
+	FOREIGN KEY (Id) REFERENCES Moods (SId)
+);
+
+CREATE TABLE Moods (
+	#Some kind of array to hold 0s or 1s
+	SId INT NOT NULL,
+	PRIMARY KEY (SId)
+);
