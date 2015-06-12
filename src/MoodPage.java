@@ -133,6 +133,12 @@ public class MoodPage extends JPanel {
 				home.setVisible(true);
 				home.main(null);
 				CloseFrame();
+				try {
+					mp3.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 			repaint();
@@ -155,6 +161,19 @@ public class MoodPage extends JPanel {
 		frame1.setLocationRelativeTo(null);
 		frame1.setVisible(true);
 		frame1.setResizable(true);
+
+		// play the song
+		String filename = "/Users/sillyjokes83/desktop/LoveStory.mp3";
+		mp3 = new MP3();
+		mp3.play();
+
+		// when the computation is done, stop playing it
+		mp3.close();
+
+		// play from the beginning
+		mp3 = new MP3();
+		mp3.play();
+		// instead of repaint call new class
 
 	}
 
