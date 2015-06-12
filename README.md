@@ -8,8 +8,7 @@ This is going to be an awesome application
 
 =========
 Next to work on:
--Reference music files from within project 
 -Play multiple songs 
--Create Database 
--Create questions and interfaces 
+-Insert data into database 
+-Figure out what songs go with what emotions
 -Display text of songs being played 
