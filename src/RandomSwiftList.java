@@ -4,6 +4,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,9 +19,10 @@ public class RandomSwiftList extends JPanel {
 	private JLabel label1, label2, label3, label4, label5, label6, label7,
 			label8, label9, label10, label11, label12, label13, label14,
 			label15;
+	private JDBC db;
 	public static MP3 mp3;
 
-	public RandomSwiftList() {
+	public RandomSwiftList() throws SQLException {
 		super();
 
 		FlowLayout experimentLayout = new FlowLayout();
@@ -36,7 +39,11 @@ public class RandomSwiftList extends JPanel {
 		label2.setFont(label2.getFont().deriveFont(16f));
 		this.add(label2);
 
-		label3 = new JLabel("Track 01:");
+		db = new JDBC();
+		ResultSet rs = null;
+		rs = db.getSongTitleById(1);
+
+		label3 = new JLabel("Track 01: " + rs.getString("Title"));
 		label3.setBounds(455, 150, 700, 50);
 		label3.setFont(label3.getFont().deriveFont(14f));
 		this.add(label3);
@@ -152,7 +159,7 @@ public class RandomSwiftList extends JPanel {
 		frame1.dispose();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SQLException {
 
 		frame1 = new JFrame("SwiftList");
 		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

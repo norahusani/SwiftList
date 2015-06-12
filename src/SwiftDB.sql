@@ -8,9 +8,8 @@ CREATE TABLE Songs (
 );
 
 CREATE TABLE Moods (
-	#Some kind of array to hold 0s or 1s
 	SId INT NOT NULL,
-	Happy BOOLEAN NOT NULL.
+	Happy BOOLEAN NOT NULL,
 	Sad BOOLEAN NOT NULL,
 	Mad BOOLEAN NOT NULL,
 	Free BOOLEAN NOT NULL,
@@ -29,6 +28,6 @@ CREATE TABLE Moods (
 	Desperate BOOLEAN NOT NULL,
 	Foolish BOOLEAN NOT NULL,
 	Amazed BOOLEAN NOT NULL,
-	Brave BOOLEAN NOT NULL
+	Brave BOOLEAN NOT NULL,
 	PRIMARY KEY (SId)
 );

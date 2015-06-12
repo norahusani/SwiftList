@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -12,7 +13,7 @@ public class JDBC {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			this.connection = DriverManager
-					.getConnection("jdbc:sqlite:Project.db");
+					.getConnection("jdbc:sqlite:swift.db");
 			this.statement = connection.createStatement();
 			statement.setQueryTimeout(30);
 		} catch (ClassNotFoundException e) {
@@ -20,6 +21,19 @@ public class JDBC {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	// return the song name based on id
+	public ResultSet getSongTitleById(int id) {
+		ResultSet rs = null;
+		try {
+			rs = this.statement
+					.executeQuery("SELECT Title FROM Songs WHERE id = " + id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return rs;
 	}
 
 	public void closeDb() {
