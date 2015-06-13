@@ -31,3 +31,28 @@ CREATE TABLE Moods (
 	Brave BOOLEAN NOT NULL,
 	PRIMARY KEY (SId)
 );
+
+INSERT INTO Songs VALUES("Tim McGraw", "Taylor Swift", 1);
+INSERT INTO Songs VALUES("Picture To Burn", "Taylor Swift", 2);
+INSERT INTO Songs VALUES("Teardrops On My Guitar", "Taylor Swift", 3);
+INSERT INTO Songs VALUES("A Place In This World", "Taylor Swift", 4);
+INSERT INTO Songs VALUES("Cold As You", "Taylor Swift", 5);
+INSERT INTO Songs VALUES("The Outside", "Taylor Swift", 6);
+INSERT INTO Songs VALUES("Tied Together With A Smile", "Taylor Swift", 7);
+INSERT INTO Songs VALUES("Stay Beautiful", "Taylor Swift", 8);
+INSERT INTO Songs VALUES("Should've Said No", "Taylor Swift", 9);
+INSERT INTO Songs VALUES("Mary's Song (Oh My My My)", "Taylor Swift", 10);
+INSERT INTO Songs VALUES("Our Song", "Taylor Swift", 11);
+INSERT INTO Songs VALUES("I'm Only Me When I'm With You", "Taylor Swift", 12);
+INSERT INTO Songs VALUES("Invisible", "Taylor Swift", 13);
+INSERT INTO Songs VALUES("Perfectly Good Heart", "Taylor Swift", 14);
+
+
+INSERT INTO Moods VALUES(1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0);
+INSERT INTO Moods VALUES(2, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1);
+INSERT INTO Moods VALUES(3, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0);
+INSERT INTO Moods VALUES(4, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1);
+INSERT INTO Moods VALUES(5, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0);
+
+
+
