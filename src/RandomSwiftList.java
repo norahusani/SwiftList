@@ -178,6 +178,16 @@ public class RandomSwiftList extends JPanel {
 		for (int i = 0; i < songsToPlay.size(); i++) {
 			mp3 = new MP3("music/" + songsToPlay.get(i) + ".mp3");
 			mp3.play();
+			synchronized (mp3) {
+				try {
+					// this makes it wait but then the screen doesn't pop up
+					// until after
+					mp3.wait(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 	}
