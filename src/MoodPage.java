@@ -163,8 +163,8 @@ public class MoodPage extends JPanel {
 		frame1.setResizable(true);
 
 		// play the song
-		mp3 = new MP3("music/1.mp3");
-		mp3.play();
+		mp3 = new MP3();
+		mp3.play("");
 
 	}
 

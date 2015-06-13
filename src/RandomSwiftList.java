@@ -16,12 +16,12 @@ import javax.swing.JPanel;
 public class RandomSwiftList extends JPanel {
 
 	static JFrame frame1;
-	private JButton btn1;
-	private JLabel label1, label2, label3, label4, label5, label6, label7,
-			label8, label9, label10, label11, label12, label13, label14,
-			label15;
+	private JButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
+			btn10, btn11, btn12, btn13, btn14, btn15;
+	private JLabel label1, label2;
 	private JDBC db;
 	public static MP3 mp3;
+	boolean b2 = false;
 
 	public RandomSwiftList() throws SQLException {
 		super();
@@ -40,74 +40,10 @@ public class RandomSwiftList extends JPanel {
 		label2.setFont(label2.getFont().deriveFont(16f));
 		this.add(label2);
 
+		// for getting the song titles
 		db = new JDBC();
 		ResultSet rs = null;
 		rs = db.getSongTitleById(1);
-
-		label3 = new JLabel("Track 01: " + rs.getString("Title"));
-		label3.setBounds(455, 150, 700, 50);
-		label3.setFont(label3.getFont().deriveFont(14f));
-		this.add(label3);
-
-		label4 = new JLabel("Track 02:");
-		label4.setBounds(455, 170, 700, 50);
-		label4.setFont(label4.getFont().deriveFont(14f));
-		this.add(label4);
-
-		label5 = new JLabel("Track 03:");
-		label5.setBounds(455, 190, 700, 50);
-		label5.setFont(label5.getFont().deriveFont(14f));
-		this.add(label5);
-
-		label6 = new JLabel("Track 04:");
-		label6.setBounds(455, 210, 700, 50);
-		label6.setFont(label6.getFont().deriveFont(14f));
-		this.add(label6);
-
-		label7 = new JLabel("Track 05:");
-		label7.setBounds(455, 230, 700, 50);
-		label7.setFont(label7.getFont().deriveFont(14f));
-		this.add(label7);
-
-		label8 = new JLabel("Track 06:");
-		label8.setBounds(455, 250, 700, 50);
-		label8.setFont(label8.getFont().deriveFont(14f));
-		this.add(label8);
-
-		label9 = new JLabel("Track 07:");
-		label9.setBounds(455, 270, 700, 50);
-		label9.setFont(label9.getFont().deriveFont(14f));
-		this.add(label9);
-
-		label10 = new JLabel("Track 08:");
-		label10.setBounds(455, 290, 700, 50);
-		label10.setFont(label10.getFont().deriveFont(14f));
-		this.add(label10);
-
-		label11 = new JLabel("Track 09:");
-		label11.setBounds(455, 310, 700, 50);
-		label11.setFont(label11.getFont().deriveFont(14f));
-		this.add(label11);
-
-		label12 = new JLabel("Track 10:");
-		label12.setBounds(455, 330, 700, 50);
-		label12.setFont(label12.getFont().deriveFont(14f));
-		this.add(label12);
-
-		label13 = new JLabel("Track 11:");
-		label13.setBounds(455, 350, 700, 50);
-		label13.setFont(label13.getFont().deriveFont(14f));
-		this.add(label13);
-
-		label14 = new JLabel("Track 12:");
-		label14.setBounds(455, 370, 700, 50);
-		label14.setFont(label14.getFont().deriveFont(14f));
-		this.add(label14);
-
-		label15 = new JLabel("Track 13:");
-		label15.setBounds(455, 390, 700, 50);
-		label15.setFont(label15.getFont().deriveFont(14f));
-		this.add(label15);
 
 		// set up the buttons
 		btn1 = new JButton("HOME");
@@ -119,6 +55,131 @@ public class RandomSwiftList extends JPanel {
 		btn1.setBorder(null);
 		this.add(btn1);
 
+		btn2 = new JButton("PLAY MY SWIFTLIST!");
+		buttonWidth = 200;
+		btn2.setBounds(390, 90, buttonWidth, buttonHeight);
+		btn2.setBackground(new Color(206, 184, 95));
+		btn2.setOpaque(true);
+		btn2.setBorder(null);
+		this.add(btn2);
+
+		btn3 = new JButton("Track 01: " + rs.getString("Title"));
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn3.setBounds(340, 160, buttonWidth, buttonHeight);
+		btn3.setBackground(new Color(50, 184, 95));
+		btn3.setOpaque(true);
+		btn3.setBorder(null);
+		this.add(btn3);
+
+		btn4 = new JButton("Track 02: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn4.setBounds(340, 200, buttonWidth, buttonHeight);
+		btn4.setBackground(new Color(50, 184, 95));
+		btn4.setOpaque(true);
+		btn4.setBorder(null);
+		this.add(btn4);
+
+		btn5 = new JButton("Track 03: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn5.setBounds(340, 240, buttonWidth, buttonHeight);
+		btn5.setBackground(new Color(50, 184, 95));
+		btn5.setOpaque(true);
+		btn5.setBorder(null);
+		this.add(btn5);
+
+		btn6 = new JButton("Track 04: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn6.setBounds(340, 280, buttonWidth, buttonHeight);
+		btn6.setBackground(new Color(50, 184, 95));
+		btn6.setOpaque(true);
+		btn6.setBorder(null);
+		this.add(btn6);
+
+		btn7 = new JButton("Track 05: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn7.setBounds(340, 320, buttonWidth, buttonHeight);
+		btn7.setBackground(new Color(50, 184, 95));
+		btn7.setOpaque(true);
+		btn7.setBorder(null);
+		this.add(btn7);
+
+		btn8 = new JButton("Track 06: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn8.setBounds(340, 360, buttonWidth, buttonHeight);
+		btn8.setBackground(new Color(50, 184, 95));
+		btn8.setOpaque(true);
+		btn8.setBorder(null);
+		this.add(btn8);
+
+		btn9 = new JButton("Track 07: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn9.setBounds(340, 400, buttonWidth, buttonHeight);
+		btn9.setBackground(new Color(50, 184, 95));
+		btn9.setOpaque(true);
+		btn9.setBorder(null);
+		this.add(btn9);
+
+		btn10 = new JButton("Track 08: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn10.setBounds(340, 440, buttonWidth, buttonHeight);
+		btn10.setBackground(new Color(50, 184, 95));
+		btn10.setOpaque(true);
+		btn10.setBorder(null);
+		this.add(btn10);
+
+		btn11 = new JButton("Track 09: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn11.setBounds(340, 480, buttonWidth, buttonHeight);
+		btn11.setBackground(new Color(50, 184, 95));
+		btn11.setOpaque(true);
+		btn11.setBorder(null);
+		this.add(btn11);
+
+		btn12 = new JButton("Track 10: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn12.setBounds(340, 520, buttonWidth, buttonHeight);
+		btn12.setBackground(new Color(50, 184, 95));
+		btn12.setOpaque(true);
+		btn12.setBorder(null);
+		this.add(btn12);
+
+		btn13 = new JButton("Track 11: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn13.setBounds(340, 560, buttonWidth, buttonHeight);
+		btn13.setBackground(new Color(50, 184, 95));
+		btn13.setOpaque(true);
+		btn13.setBorder(null);
+		this.add(btn13);
+
+		btn14 = new JButton("Track 12: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn14.setBounds(340, 600, buttonWidth, buttonHeight);
+		btn14.setBackground(new Color(50, 184, 95));
+		btn14.setOpaque(true);
+		btn14.setBorder(null);
+		this.add(btn14);
+
+		btn15 = new JButton("Track 13: ");
+		buttonHeight = 25;
+		buttonWidth = 300;
+		btn15.setBounds(340, 640, buttonWidth, buttonHeight);
+		btn15.setBackground(new Color(50, 184, 95));
+		btn15.setOpaque(true);
+		btn15.setBorder(null);
+		this.add(btn15);
+
 		// size of frame
 		setSize(300, 300);
 		setVisible(true);
@@ -127,6 +188,7 @@ public class RandomSwiftList extends JPanel {
 		// set up button action
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
+		btn2.addActionListener(br);
 
 	}
 
@@ -146,6 +208,34 @@ public class RandomSwiftList extends JPanel {
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
+
+			} else if (e.getSource() == btn2) {
+				ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
+				songsToPlay.add(1);
+				songsToPlay.add(2);
+				if (b2 == false) {
+					b2 = true;
+					mp3 = new MP3();
+					for (int i = 0; i < songsToPlay.size(); i++) {
+						mp3.play("music/" + songsToPlay.get(i) + ".mp3");
+						synchronized (mp3) {
+							try {
+								mp3.wait(1000);
+							} catch (InterruptedException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
+						}
+					}
+				} else {
+					b2 = false;
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 
 			}
@@ -170,25 +260,6 @@ public class RandomSwiftList extends JPanel {
 		frame1.setLocationRelativeTo(null);
 		frame1.setVisible(true);
 		frame1.setResizable(true);
-
-		// play the song
-		ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
-		songsToPlay.add(1);
-		songsToPlay.add(2);
-		for (int i = 0; i < songsToPlay.size(); i++) {
-			mp3 = new MP3("music/" + songsToPlay.get(i) + ".mp3");
-			mp3.play();
-			synchronized (mp3) {
-				try {
-					// this makes it wait but then the screen doesn't pop up
-					// until after
-					mp3.wait(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
 
 	}
 
