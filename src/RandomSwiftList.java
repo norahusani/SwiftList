@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -171,17 +172,13 @@ public class RandomSwiftList extends JPanel {
 		frame1.setResizable(true);
 
 		// play the song
-		String filename = "/Users/sillyjokes83/desktop/LoveStory.mp3";
-		mp3 = new MP3();
-		mp3.play();
-
-		// when the computation is done, stop playing it
-		mp3.close();
-
-		// play from the beginning
-		mp3 = new MP3();
-		mp3.play();
-		// instead of repaint call new class
+		ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
+		songsToPlay.add(1);
+		songsToPlay.add(2);
+		for (int i = 0; i < songsToPlay.size(); i++) {
+			mp3 = new MP3("music/" + songsToPlay.get(i) + ".mp3");
+			mp3.play();
+		}
 
 	}
 

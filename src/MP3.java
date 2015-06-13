@@ -29,31 +29,26 @@ public class MP3 {
 	public BufferedInputStream bis;
 
 	// constructor that takes the name of an MP3 file
-	public MP3() {
-
+	public MP3(String filename) {
+		this.filename = filename;
 	}
 
 	public void close() throws IOException {
 		if (player != null)
 			player.close();
-
 	}
 
 	// play the MP3 file to the sound card
 	public void play() {
 		try {
 			InputStream stream = MP3.class.getClassLoader()
-					.getResourceAsStream("music/LoveStory.mp3");
-
-			// FileInputStream fis = new FileInputStream(filename);
+					.getResourceAsStream(filename);
 
 			bis = new BufferedInputStream(stream);
-			// stream.close();
 			player = new Player(bis);
-			// bis.close();
 
 		} catch (Exception e) {
-			// System.out.println("Problem playing file " + filename);
+			System.out.println("Problem playing file " + filename);
 			System.out.println(e);
 		}
 
@@ -72,16 +67,16 @@ public class MP3 {
 
 	// test client
 	public static void main(String[] args) throws IOException {
-		String filename = "";
-		MP3 mp3 = new MP3();
-		mp3.play();
-
-		// when the computation is done, stop playing it
-		mp3.close();
-
-		// play from the beginning
-		mp3 = new MP3();
-		mp3.play();
+		// String filename = "";
+		// MP3 mp3 = new MP3();
+		// mp3.play();
+		//
+		// // when the computation is done, stop playing it
+		// mp3.close();
+		//
+		// // play from the beginning
+		// mp3 = new MP3();
+		// mp3.play();
 
 	}
 
