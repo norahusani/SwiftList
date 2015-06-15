@@ -19,9 +19,14 @@ public class RandomSwiftList extends JPanel {
 	private JButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
 			btn10, btn11, btn12, btn13, btn14, btn15;
 	private JLabel label1, label2;
+	public ArrayList<JButton> songButtons = new ArrayList<JButton>();
+	private ArrayList<String> songTitles;
+	public ArrayList<Integer> ids = new ArrayList<Integer>();
 	private JDBC db;
 	public static MP3 mp3;
 	boolean b2 = false;
+	boolean song1 = false;
+	private ArrayList<String> result;
 
 	public RandomSwiftList() throws SQLException {
 		super();
@@ -63,122 +68,12 @@ public class RandomSwiftList extends JPanel {
 		btn2.setBorder(null);
 		this.add(btn2);
 
-		btn3 = new JButton("Track 01: " + rs.getString("Title"));
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn3.setBounds(340, 160, buttonWidth, buttonHeight);
-		btn3.setBackground(new Color(50, 184, 95));
-		btn3.setOpaque(true);
-		btn3.setBorder(null);
-		this.add(btn3);
-
-		btn4 = new JButton("Track 02: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn4.setBounds(340, 200, buttonWidth, buttonHeight);
-		btn4.setBackground(new Color(50, 184, 95));
-		btn4.setOpaque(true);
-		btn4.setBorder(null);
-		this.add(btn4);
-
-		btn5 = new JButton("Track 03: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn5.setBounds(340, 240, buttonWidth, buttonHeight);
-		btn5.setBackground(new Color(50, 184, 95));
-		btn5.setOpaque(true);
-		btn5.setBorder(null);
-		this.add(btn5);
-
-		btn6 = new JButton("Track 04: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn6.setBounds(340, 280, buttonWidth, buttonHeight);
-		btn6.setBackground(new Color(50, 184, 95));
-		btn6.setOpaque(true);
-		btn6.setBorder(null);
-		this.add(btn6);
-
-		btn7 = new JButton("Track 05: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn7.setBounds(340, 320, buttonWidth, buttonHeight);
-		btn7.setBackground(new Color(50, 184, 95));
-		btn7.setOpaque(true);
-		btn7.setBorder(null);
-		this.add(btn7);
-
-		btn8 = new JButton("Track 06: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn8.setBounds(340, 360, buttonWidth, buttonHeight);
-		btn8.setBackground(new Color(50, 184, 95));
-		btn8.setOpaque(true);
-		btn8.setBorder(null);
-		this.add(btn8);
-
-		btn9 = new JButton("Track 07: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn9.setBounds(340, 400, buttonWidth, buttonHeight);
-		btn9.setBackground(new Color(50, 184, 95));
-		btn9.setOpaque(true);
-		btn9.setBorder(null);
-		this.add(btn9);
-
-		btn10 = new JButton("Track 08: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn10.setBounds(340, 440, buttonWidth, buttonHeight);
-		btn10.setBackground(new Color(50, 184, 95));
-		btn10.setOpaque(true);
-		btn10.setBorder(null);
-		this.add(btn10);
-
-		btn11 = new JButton("Track 09: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn11.setBounds(340, 480, buttonWidth, buttonHeight);
-		btn11.setBackground(new Color(50, 184, 95));
-		btn11.setOpaque(true);
-		btn11.setBorder(null);
-		this.add(btn11);
-
-		btn12 = new JButton("Track 10: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn12.setBounds(340, 520, buttonWidth, buttonHeight);
-		btn12.setBackground(new Color(50, 184, 95));
-		btn12.setOpaque(true);
-		btn12.setBorder(null);
-		this.add(btn12);
-
-		btn13 = new JButton("Track 11: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn13.setBounds(340, 560, buttonWidth, buttonHeight);
-		btn13.setBackground(new Color(50, 184, 95));
-		btn13.setOpaque(true);
-		btn13.setBorder(null);
-		this.add(btn13);
-
-		btn14 = new JButton("Track 12: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn14.setBounds(340, 600, buttonWidth, buttonHeight);
-		btn14.setBackground(new Color(50, 184, 95));
-		btn14.setOpaque(true);
-		btn14.setBorder(null);
-		this.add(btn14);
-
-		btn15 = new JButton("Track 13: ");
-		buttonHeight = 25;
-		buttonWidth = 300;
-		btn15.setBounds(340, 640, buttonWidth, buttonHeight);
-		btn15.setBackground(new Color(50, 184, 95));
-		btn15.setOpaque(true);
-		btn15.setBorder(null);
-		this.add(btn15);
+		// temp will eventually need to generate random numbers
+		for (int i = 0; i < 13; i++) {
+			ids.add(i + 1);
+		}
+		songTitles = getSongTitles(ids);
+		createSongButtons(songTitles);
 
 		// size of frame
 		setSize(300, 300);
@@ -189,6 +84,50 @@ public class RandomSwiftList extends JPanel {
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
 		btn2.addActionListener(br);
+		songButtons.get(0).addActionListener(br);
+
+	}
+
+	private void createSongButtons(ArrayList<String> songTitles)
+			throws SQLException {
+		int buttonHeight = 25;
+		int buttonWidth = 300;
+		int x = 340;
+		int y = 160;
+		JButton temp = new JButton();
+		for (int i = 0; i < 13; i++) {
+			temp = new JButton("Track " + (i + 1) + ": " + songTitles.get(i));
+			temp.setBounds(x, y, buttonWidth, buttonHeight);
+			temp.setBackground(new Color(50, 184, 95));
+			temp.setOpaque(true);
+			temp.setBorder(null);
+			songButtons.add(temp);
+			this.add(songButtons.get(i));
+			y += 40;
+		}
+	}
+
+	public ArrayList<String> getSongTitles(ArrayList<Integer> songIds) {
+		db = new JDBC();
+		// ResultSet rs = null;
+		ArrayList<String> temp = new ArrayList<String>();
+		for (int i = 0; i < 13; i++) {
+			ResultSet rs = null;
+			rs = db.getSongTitleById(songIds.get(i));
+			try {
+				System.out.println(rs.getString(1));
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				temp.add(rs.getString(1));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return temp;
 
 	}
 
@@ -211,33 +150,52 @@ public class RandomSwiftList extends JPanel {
 				}
 
 			} else if (e.getSource() == btn2) {
-				ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
-				songsToPlay.add(1);
-				songsToPlay.add(2);
-				if (b2 == false) {
-					b2 = true;
+				// eventually need to figure out how to loop music
+				// ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
+				// songsToPlay.add(1);
+				// songsToPlay.add(2);
+				// if (b2 == false) {
+				// b2 = true;
+				// mp3 = new MP3();
+				// for (int i = 0; i < songsToPlay.size(); i++) {
+				// mp3.play("music/" + songsToPlay.get(i) + ".mp3");
+				// synchronized (mp3) {
+				// try {
+				// mp3.wait(1000);
+				// } catch (InterruptedException e2) {
+				// // TODO Auto-generated catch block
+				// e2.printStackTrace();
+				// }
+				// }
+				// }
+				// } else {
+				// b2 = false;
+				// try {
+				// mp3.close();
+				// } catch (IOException e1) {
+				// // TODO Auto-generated catch block
+				// e1.printStackTrace();
+				// }
+				// }
+
+			}
+
+			else if (e.getSource() == songButtons.get(0)) {
+				if (song1 == false) {
+					songButtons.get(0).setBackground(new Color(206, 184, 95));
 					mp3 = new MP3();
-					for (int i = 0; i < songsToPlay.size(); i++) {
-						mp3.play("music/" + songsToPlay.get(i) + ".mp3");
-						synchronized (mp3) {
-							try {
-								mp3.wait(1000);
-							} catch (InterruptedException e2) {
-								// TODO Auto-generated catch block
-								e2.printStackTrace();
-							}
-						}
-					}
+					mp3.play("music/" + ids.get(0) + ".mp3");
+					song1 = true;
 				} else {
-					b2 = false;
+					songButtons.get(0).setBackground(new Color(50, 184, 95));
 					try {
 						mp3.close();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					song1 = false;
 				}
-
 			}
 
 			repaint();
