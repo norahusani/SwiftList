@@ -68,10 +68,7 @@ public class RandomSwiftList extends JPanel {
 		btn2.setBorder(null);
 		this.add(btn2);
 
-		// temp will eventually need to generate random numbers
-		for (int i = 0; i < 13; i++) {
-			ids.add(i + 1);
-		}
+		ids = chooseRandomSongs();
 		songTitles = getSongTitles(ids);
 		createSongButtons(songTitles);
 
@@ -128,6 +125,34 @@ public class RandomSwiftList extends JPanel {
 			}
 		}
 		return temp;
+
+	}
+
+	public ArrayList<Integer> chooseRandomSongs() {
+		db = new JDBC();
+		ResultSet rs = null;
+		rs = db.executeQuery("SELECT COUNT(Id) FROM Songs");
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		int numOfSongs = 0;
+		try {
+			numOfSongs = rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(numOfSongs);
+		int total = 0;
+		int temp;
+		while (total < 13) {
+			temp = (int) (numOfSongs * Math.random() + 1);
+			if (!result.contains(temp)) {
+				result.add(temp);
+				total++;
+				System.out.println(temp);
+			}
+		}
+		System.out.println(result.size());
+		return result;
 
 	}
 
