@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,9 +19,15 @@ public class MoodPage extends JPanel {
 			label8, label9, label10, label11, label12, label13, label14,
 			label15;
 	public static MP3 mp3;
+	private static ArrayList<Integer> emotionsChosen;
 
-	public MoodPage() {
+	public MoodPage(ArrayList<Integer> emotionsChosen) {
 		super();
+
+		this.emotionsChosen = emotionsChosen;
+		for (int i = 0; i < this.emotionsChosen.size(); i++) {
+			System.out.println(this.emotionsChosen.get(i));
+		}
 
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
@@ -155,14 +162,13 @@ public class MoodPage extends JPanel {
 
 		frame1 = new JFrame("SwiftList");
 		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame1.add(new MoodPage());
+		frame1.add(new MoodPage(emotionsChosen));
 		frame1.setBounds(300, 500, 1000, 700);
 		frame1.setBackground(new Color(100, 0, 60));
 		frame1.setLocationRelativeTo(null);
 		frame1.setVisible(true);
 		frame1.setResizable(true);
 
-		// play the song
 		mp3 = new MP3();
 		mp3.play("");
 

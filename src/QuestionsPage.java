@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,16 +19,18 @@ public class QuestionsPage extends JPanel {
 			btn19, btn20, btn21, btn22;
 	private JLabel label1, label2;
 	public static MP3 mp3;
-	boolean b2 = false, b3 = false, b4 = false, b5 = false, b6 = false,
-			b7 = false, b8 = false, b9 = false, b10 = false, b11 = false,
-			b12 = false, b13 = false, b14 = false, b15 = false, b16 = false,
-			b17 = false, b18 = false, b19 = false, b20 = false, b21 = false;
+	private ArrayList<Boolean> emotionsClicked = new ArrayList<Boolean>();
 
 	public QuestionsPage() {
 		super();
 
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
+
+		// set all emotionsClicked booleans to false
+		for (int i = 0; i < 20; i++) {
+			emotionsClicked.add(false);
+		}
 
 		// set up label
 		label2 = new JLabel(
@@ -268,187 +271,194 @@ public class QuestionsPage extends JPanel {
 				repaint();
 			}
 			if (e.getSource() == btn2) {
-				if (b2 == false) {
-					b2 = true;
+				if (emotionsClicked.get(0) == false) {
+					emotionsClicked.set(0, true);
 					btn2.setBackground(new Color(50, 184, 95));
 				} else {
-					b2 = false;
+					emotionsClicked.set(0, false);
 					btn2.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn3) {
-				if (b3 == false) {
-					b3 = true;
+				if (emotionsClicked.get(1) == false) {
+					emotionsClicked.set(1, true);
 					btn3.setBackground(new Color(50, 184, 95));
 				} else {
-					b3 = false;
+					emotionsClicked.set(1, false);
 					btn3.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn4) {
-				if (b4 == false) {
-					b4 = true;
+				if (emotionsClicked.get(2) == false) {
+					emotionsClicked.set(2, true);
 					btn4.setBackground(new Color(50, 184, 95));
 				} else {
-					b4 = false;
+					emotionsClicked.set(2, false);
 					btn4.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn5) {
-				if (b5 == false) {
-					b5 = true;
+				if (emotionsClicked.get(3) == false) {
+					emotionsClicked.set(3, true);
 					btn5.setBackground(new Color(50, 184, 95));
 				} else {
-					b5 = false;
+					emotionsClicked.set(3, false);
 					btn5.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn6) {
-				if (b6 == false) {
-					b6 = true;
+				if (emotionsClicked.get(4) == false) {
+					emotionsClicked.set(4, true);
 					btn6.setBackground(new Color(50, 184, 95));
 				} else {
-					b6 = false;
+					emotionsClicked.set(4, false);
 					btn6.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn7) {
-				if (b7 == false) {
-					b7 = true;
+				if (emotionsClicked.get(5) == false) {
+					emotionsClicked.set(5, true);
 					btn7.setBackground(new Color(50, 184, 95));
 				} else {
-					b7 = false;
+					emotionsClicked.set(5, false);
 					btn7.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn8) {
-				if (b8 == false) {
-					b8 = true;
+				if (emotionsClicked.get(6) == false) {
+					emotionsClicked.set(6, true);
 					btn8.setBackground(new Color(50, 184, 95));
 				} else {
-					b8 = false;
+					emotionsClicked.set(6, false);
 					btn8.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn9) {
-				if (b9 == false) {
-					b9 = true;
+				if (emotionsClicked.get(7) == false) {
+					emotionsClicked.set(7, true);
 					btn9.setBackground(new Color(50, 184, 95));
 				} else {
-					b9 = false;
+					emotionsClicked.set(7, false);
 					btn9.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn10) {
-				if (b10 == false) {
-					b10 = true;
+				if (emotionsClicked.get(8) == false) {
+					emotionsClicked.set(8, true);
 					btn10.setBackground(new Color(50, 184, 95));
 				} else {
-					b10 = false;
+					emotionsClicked.set(8, false);
 					btn10.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn11) {
-				if (b11 == false) {
-					b11 = true;
+				if (emotionsClicked.get(9) == false) {
+					emotionsClicked.set(9, true);
 					btn11.setBackground(new Color(50, 184, 95));
 				} else {
-					b11 = false;
+					emotionsClicked.set(9, false);
 					btn11.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn12) {
-				if (b12 == false) {
-					b12 = true;
+				if (emotionsClicked.get(10) == false) {
+					emotionsClicked.set(10, true);
 					btn12.setBackground(new Color(50, 184, 95));
 				} else {
-					b12 = false;
+					emotionsClicked.set(10, false);
 					btn12.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn13) {
-				if (b13 == false) {
-					b13 = true;
+				if (emotionsClicked.get(11) == false) {
+					emotionsClicked.set(11, true);
 					btn13.setBackground(new Color(50, 184, 95));
 				} else {
-					b13 = false;
+					emotionsClicked.set(11, false);
 					btn13.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn14) {
-				if (b14 == false) {
-					b14 = true;
+				if (emotionsClicked.get(12) == false) {
+					emotionsClicked.set(12, true);
 					btn14.setBackground(new Color(50, 184, 95));
 				} else {
-					b14 = false;
+					emotionsClicked.set(12, false);
 					btn14.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn15) {
-				if (b15 == false) {
-					b15 = true;
+				if (emotionsClicked.get(13) == false) {
+					emotionsClicked.set(13, true);
 					btn15.setBackground(new Color(50, 184, 95));
 				} else {
-					b15 = false;
+					emotionsClicked.set(13, false);
 					btn15.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn16) {
-				if (b16 == false) {
-					b16 = true;
+				if (emotionsClicked.get(14) == false) {
+					emotionsClicked.set(14, true);
 					btn16.setBackground(new Color(50, 184, 95));
 				} else {
-					b16 = false;
+					emotionsClicked.set(14, false);
 					btn16.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn17) {
-				if (b17 == false) {
-					b17 = true;
+				if (emotionsClicked.get(15) == false) {
+					emotionsClicked.set(15, true);
 					btn17.setBackground(new Color(50, 184, 95));
 				} else {
-					b17 = false;
+					emotionsClicked.set(15, false);
 					btn17.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn18) {
-				if (b18 == false) {
-					b18 = true;
+				if (emotionsClicked.get(16) == false) {
+					emotionsClicked.set(16, true);
 					btn18.setBackground(new Color(50, 184, 95));
 				} else {
-					b18 = false;
+					emotionsClicked.set(16, false);
 					btn18.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn19) {
-				if (b19 == false) {
-					b19 = true;
+				if (emotionsClicked.get(17) == false) {
+					emotionsClicked.set(17, true);
 					btn19.setBackground(new Color(50, 184, 95));
 				} else {
-					b19 = false;
+					emotionsClicked.set(17, false);
 					btn19.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn20) {
-				if (b20 == false) {
-					b20 = true;
+				if (emotionsClicked.get(18) == false) {
+					emotionsClicked.set(18, true);
 					btn20.setBackground(new Color(50, 184, 95));
 				} else {
-					b20 = false;
+					emotionsClicked.set(18, false);
 					btn20.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn21) {
-				if (b21 == false) {
-					b21 = true;
+				if (emotionsClicked.get(19) == false) {
+					emotionsClicked.set(19, true);
 					btn21.setBackground(new Color(50, 184, 95));
 				} else {
-					b21 = false;
+					emotionsClicked.set(19, false);
 					btn21.setBackground(new Color(206, 184, 95));
 				}
 			}
 			if (e.getSource() == btn22) {
-				MoodPage mood = new MoodPage();
+				// create an array list of all the chosen emotions
+				ArrayList<Integer> emotionsChosen = new ArrayList<Integer>();
+				for (int i = 0; i < emotionsClicked.size(); i++) {
+					if (emotionsClicked.get(i) == true) {
+						emotionsChosen.add(i + 1);
+					}
+				}
+				MoodPage mood = new MoodPage(emotionsChosen);
 				mood.setVisible(true);
 				try {
 					mood.main(null);
