@@ -16,17 +16,20 @@ import javax.swing.JPanel;
 public class RandomSwiftList extends JPanel {
 
 	static JFrame frame1;
-	private JButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
-			btn10, btn11, btn12, btn13, btn14, btn15;
+	private JButton btn1, btn2;
 	private JLabel label1, label2;
 	public ArrayList<JButton> songButtons = new ArrayList<JButton>();
 	private ArrayList<String> songTitles;
 	public ArrayList<Integer> ids = new ArrayList<Integer>();
 	private JDBC db;
-	public static MP3 mp3;
+	public static MP3 mp3 = new MP3();
 	boolean b2 = false;
-	boolean song1 = false;
+	boolean song1 = false, song2 = false, song3 = false, song4 = false,
+			song5 = false, song6 = false, song7 = false, song8 = false,
+			song9 = false, song10 = false, song11 = false, song12 = false,
+			song13 = false;
 	private ArrayList<String> result;
+	private boolean songPlaying = false;
 
 	public RandomSwiftList() throws SQLException {
 		super();
@@ -82,6 +85,18 @@ public class RandomSwiftList extends JPanel {
 		btn1.addActionListener(br);
 		btn2.addActionListener(br);
 		songButtons.get(0).addActionListener(br);
+		songButtons.get(1).addActionListener(br);
+		songButtons.get(2).addActionListener(br);
+		songButtons.get(3).addActionListener(br);
+		songButtons.get(4).addActionListener(br);
+		songButtons.get(5).addActionListener(br);
+		songButtons.get(6).addActionListener(br);
+		songButtons.get(7).addActionListener(br);
+		songButtons.get(8).addActionListener(br);
+		songButtons.get(9).addActionListener(br);
+		songButtons.get(10).addActionListener(br);
+		songButtons.get(11).addActionListener(br);
+		songButtons.get(12).addActionListener(br);
 
 	}
 
@@ -156,6 +171,12 @@ public class RandomSwiftList extends JPanel {
 
 	}
 
+	private void repaintButtons() {
+		for (int i = 0; i < songButtons.size(); i++) {
+			songButtons.get(i).setBackground(new Color(50, 184, 95));
+		}
+	}
+
 	public class ButtonResponder implements ActionListener {
 
 		@Override
@@ -206,11 +227,21 @@ public class RandomSwiftList extends JPanel {
 			}
 
 			else if (e.getSource() == songButtons.get(0)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
 				if (song1 == false) {
 					songButtons.get(0).setBackground(new Color(206, 184, 95));
-					mp3 = new MP3();
 					mp3.play("music/" + ids.get(0) + ".mp3");
 					song1 = true;
+					songPlaying = true;
 				} else {
 					songButtons.get(0).setBackground(new Color(50, 184, 95));
 					try {
@@ -220,6 +251,339 @@ public class RandomSwiftList extends JPanel {
 						e1.printStackTrace();
 					}
 					song1 = false;
+				}
+			} else if (e.getSource() == songButtons.get(1)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song2 == false) {
+					songButtons.get(1).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(1) + ".mp3");
+					song2 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(1).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song2 = false;
+				}
+			} else if (e.getSource() == songButtons.get(2)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song3 == false) {
+					songButtons.get(2).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(2) + ".mp3");
+					song3 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(2).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song3 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(3)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song4 == false) {
+					songButtons.get(3).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(3) + ".mp3");
+					song4 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(3).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song4 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(4)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song5 == false) {
+					songButtons.get(4).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(4) + ".mp3");
+					song5 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(4).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song5 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(5)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song6 == false) {
+					songButtons.get(5).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(5) + ".mp3");
+					song6 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(5).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song6 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(6)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song7 == false) {
+					songButtons.get(6).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(6) + ".mp3");
+					song7 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(6).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					song7 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(7)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song8 == false) {
+					songButtons.get(7).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(7) + ".mp3");
+					song8 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(7).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song8 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(8)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song9 == false) {
+					songButtons.get(8).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(8) + ".mp3");
+					song9 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(8).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song9 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(9)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song10 == false) {
+					songButtons.get(9).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(9) + ".mp3");
+					song10 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(9).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song10 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(10)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song11 == false) {
+					songButtons.get(10).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(10) + ".mp3");
+					song11 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(10).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song11 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(11)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song12 == false) {
+					songButtons.get(11).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(11) + ".mp3");
+					song12 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(11).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song12 = false;
+				}
+			}
+
+			else if (e.getSource() == songButtons.get(12)) {
+				if (songPlaying == true) {
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaintButtons();
+					songPlaying = false;
+				}
+				if (song13 == false) {
+					songButtons.get(12).setBackground(new Color(206, 184, 95));
+					mp3.play("music/" + ids.get(12) + ".mp3");
+					song13 = true;
+					songPlaying = true;
+				} else {
+					songButtons.get(12).setBackground(new Color(50, 184, 95));
+					try {
+						mp3.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					song13 = false;
 				}
 			}
 
