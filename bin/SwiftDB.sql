@@ -54,6 +54,35 @@ INSERT INTO Moods VALUES(3, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1
 INSERT INTO Moods VALUES(4, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1);
 INSERT INTO Moods VALUES(5, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0);
 INSERT INTO Moods VALUES(6, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO Moods VALUES(7, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0 ,1);
+INSERT INTO Moods VALUES(8, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1);
+INSERT INTO Moods VALUES(9, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1);
+INSERT INTO Moods VALUES(10, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1);
+INSERT INTO Moods VALUES(11, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1);
+INSERT INTO Moods VALUES(12, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0);
+INSERT INTO Moods VALUES(13, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0);
+INSERT INTO Moods VALUES(14, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
+
+
+INSERT INTO Songs VALUES("Jump Then Fall", "Fearless Platinum Edition", 15);
+INSERT INTO Songs VALUES("Untouchable", "Fearless Platinum Edition", 16);
+INSERT INTO Songs VALUES("Forever & Always (Piano Version)", "Fearless Platinum Edition", 17);
+INSERT INTO Songs VALUES("Come In With The Rain", "Fearless Platinum Edition", 18);
+INSERT INTO Songs VALUES("Superstar", "Fearless Platinum Edition", 19);
+INSERT INTO Songs VALUES("The Other Side Of The Door", "Fearless Platinum Edition", 20);
+INSERT INTO Songs VALUES("Fearless", "Fearless", 21);
+INSERT INTO Songs VALUES("Fifteen", "Fearless", 22);
+INSERT INTO Songs VALUES("Love Story", "Fearless", 23);
+INSERT INTO Songs VALUES("Hey Stephen", "Fearless", 24);
+INSERT INTO Songs VALUES("White Horse", "Fearless", 25);
+INSERT INTO Songs VALUES("You Belong With Me", "Fearless", 26);
+INSERT INTO Songs VALUES("Breathe", "Fearless", 27);
+INSERT INTO Songs VALUES("Tell Me Why", "Fearless", 28);
+INSERT INTO Songs VALUES("You're Not Sorry", "Fearless", 29);
+INSERT INTO Songs VALUES("The Way I Loved You", "Fearless", 30);
+INSERT INTO Songs VALUES("Forever & Always", "Fearless", 31);
+INSERT INTO Songs VALUES("The Best Day", "Fearless", 32);
+INSERT INTO Songs VALUES("Change", "Fearless", 33);
 
 
 
