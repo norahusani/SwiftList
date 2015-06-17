@@ -24,10 +24,7 @@ public class RandomSwiftList extends JPanel {
 	private JDBC db;
 	public static MP3 mp3 = new MP3();
 	boolean b2 = false;
-	boolean song1 = false, song2 = false, song3 = false, song4 = false,
-			song5 = false, song6 = false, song7 = false, song8 = false,
-			song9 = false, song10 = false, song11 = false, song12 = false,
-			song13 = false;
+	private ArrayList<Boolean> thisSongPlaying = new ArrayList<Boolean>();
 	private ArrayList<String> result;
 	private boolean songPlaying = false;
 
@@ -36,6 +33,11 @@ public class RandomSwiftList extends JPanel {
 
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
+
+		// set all thisSongPlaying booleans to false
+		for (int i = 0; i < 13; i++) {
+			thisSongPlaying.add(false);
+		}
 
 		// set up label
 		label1 = new JLabel("Please enjoy your random SwiftList!");
@@ -127,12 +129,6 @@ public class RandomSwiftList extends JPanel {
 			ResultSet rs = null;
 			rs = db.getSongTitleById(songIds.get(i));
 			try {
-				System.out.println(rs.getString(1));
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			try {
 				temp.add(rs.getString(1));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -155,7 +151,6 @@ public class RandomSwiftList extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(numOfSongs);
 		int total = 0;
 		int temp;
 		while (total < 13) {
@@ -163,10 +158,8 @@ public class RandomSwiftList extends JPanel {
 			if (!result.contains(temp)) {
 				result.add(temp);
 				total++;
-				System.out.println(temp);
 			}
 		}
-		System.out.println(result.size());
 		return result;
 
 	}
@@ -175,6 +168,14 @@ public class RandomSwiftList extends JPanel {
 		for (int i = 0; i < songButtons.size(); i++) {
 			songButtons.get(i).setBackground(new Color(50, 184, 95));
 		}
+	}
+
+	private void unclickAllButtons(int index) {
+		for (int i = 0; i < 13; i++) {
+			if (i != index)
+				thisSongPlaying.set(i, false);
+		}
+		repaintButtons();
 	}
 
 	public class ButtonResponder implements ActionListener {
@@ -234,13 +235,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(0);
 					songPlaying = false;
 				}
-				if (song1 == false) {
+				if (thisSongPlaying.get(0) == false) {
 					songButtons.get(0).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(0) + ".mp3");
-					song1 = true;
+					thisSongPlaying.set(0, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(0).setBackground(new Color(50, 184, 95));
@@ -250,7 +251,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song1 = false;
+					thisSongPlaying.set(0, false);
 				}
 			} else if (e.getSource() == songButtons.get(1)) {
 				if (songPlaying == true) {
@@ -260,13 +261,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(1);
 					songPlaying = false;
 				}
-				if (song2 == false) {
+				if (thisSongPlaying.get(1) == false) {
 					songButtons.get(1).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(1) + ".mp3");
-					song2 = true;
+					thisSongPlaying.set(1, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(1).setBackground(new Color(50, 184, 95));
@@ -276,7 +277,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song2 = false;
+					thisSongPlaying.set(1, false);
 				}
 			} else if (e.getSource() == songButtons.get(2)) {
 				if (songPlaying == true) {
@@ -286,13 +287,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(2);
 					songPlaying = false;
 				}
-				if (song3 == false) {
+				if (thisSongPlaying.get(2) == false) {
 					songButtons.get(2).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(2) + ".mp3");
-					song3 = true;
+					thisSongPlaying.set(2, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(2).setBackground(new Color(50, 184, 95));
@@ -302,7 +303,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song3 = false;
+					thisSongPlaying.set(2, false);
 				}
 			}
 
@@ -314,13 +315,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(3);
 					songPlaying = false;
 				}
-				if (song4 == false) {
+				if (thisSongPlaying.get(3) == false) {
 					songButtons.get(3).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(3) + ".mp3");
-					song4 = true;
+					thisSongPlaying.set(3, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(3).setBackground(new Color(50, 184, 95));
@@ -330,7 +331,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song4 = false;
+					thisSongPlaying.set(3, false);
 				}
 			}
 
@@ -342,13 +343,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(4);
 					songPlaying = false;
 				}
-				if (song5 == false) {
+				if (thisSongPlaying.get(4) == false) {
 					songButtons.get(4).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(4) + ".mp3");
-					song5 = true;
+					thisSongPlaying.set(4, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(4).setBackground(new Color(50, 184, 95));
@@ -358,7 +359,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song5 = false;
+					thisSongPlaying.set(4, false);
 				}
 			}
 
@@ -370,13 +371,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(5);
 					songPlaying = false;
 				}
-				if (song6 == false) {
+				if (thisSongPlaying.get(5) == false) {
 					songButtons.get(5).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(5) + ".mp3");
-					song6 = true;
+					thisSongPlaying.set(5, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(5).setBackground(new Color(50, 184, 95));
@@ -386,7 +387,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song6 = false;
+					thisSongPlaying.set(5, false);
 				}
 			}
 
@@ -398,13 +399,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(6);
 					songPlaying = false;
 				}
-				if (song7 == false) {
+				if (thisSongPlaying.get(6) == false) {
 					songButtons.get(6).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(6) + ".mp3");
-					song7 = true;
+					thisSongPlaying.set(6, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(6).setBackground(new Color(50, 184, 95));
@@ -415,7 +416,7 @@ public class RandomSwiftList extends JPanel {
 						e1.printStackTrace();
 					}
 
-					song7 = false;
+					thisSongPlaying.set(6, false);
 				}
 			}
 
@@ -427,13 +428,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(7);
 					songPlaying = false;
 				}
-				if (song8 == false) {
+				if (thisSongPlaying.get(7) == false) {
 					songButtons.get(7).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(7) + ".mp3");
-					song8 = true;
+					thisSongPlaying.set(7, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(7).setBackground(new Color(50, 184, 95));
@@ -443,7 +444,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song8 = false;
+					thisSongPlaying.set(7, false);
 				}
 			}
 
@@ -455,13 +456,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(8);
 					songPlaying = false;
 				}
-				if (song9 == false) {
+				if (thisSongPlaying.get(8) == false) {
 					songButtons.get(8).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(8) + ".mp3");
-					song9 = true;
+					thisSongPlaying.set(8, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(8).setBackground(new Color(50, 184, 95));
@@ -471,7 +472,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song9 = false;
+					thisSongPlaying.set(8, false);
 				}
 			}
 
@@ -483,13 +484,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(9);
 					songPlaying = false;
 				}
-				if (song10 == false) {
+				if (thisSongPlaying.get(9) == false) {
 					songButtons.get(9).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(9) + ".mp3");
-					song10 = true;
+					thisSongPlaying.set(9, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(9).setBackground(new Color(50, 184, 95));
@@ -499,7 +500,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song10 = false;
+					thisSongPlaying.set(9, false);
 				}
 			}
 
@@ -511,13 +512,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(10);
 					songPlaying = false;
 				}
-				if (song11 == false) {
+				if (thisSongPlaying.get(10) == false) {
 					songButtons.get(10).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(10) + ".mp3");
-					song11 = true;
+					thisSongPlaying.set(10, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(10).setBackground(new Color(50, 184, 95));
@@ -527,7 +528,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song11 = false;
+					thisSongPlaying.set(10, false);
 				}
 			}
 
@@ -539,13 +540,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(11);
 					songPlaying = false;
 				}
-				if (song12 == false) {
+				if (thisSongPlaying.get(11) == false) {
 					songButtons.get(11).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(11) + ".mp3");
-					song12 = true;
+					thisSongPlaying.set(11, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(11).setBackground(new Color(50, 184, 95));
@@ -555,7 +556,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song12 = false;
+					thisSongPlaying.set(11, false);
 				}
 			}
 
@@ -567,13 +568,13 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					repaintButtons();
+					unclickAllButtons(12);
 					songPlaying = false;
 				}
-				if (song13 == false) {
+				if (thisSongPlaying.get(12) == false) {
 					songButtons.get(12).setBackground(new Color(206, 184, 95));
 					mp3.play("music/" + ids.get(12) + ".mp3");
-					song13 = true;
+					thisSongPlaying.set(12, true);
 					songPlaying = true;
 				} else {
 					songButtons.get(12).setBackground(new Color(50, 184, 95));
@@ -583,7 +584,7 @@ public class RandomSwiftList extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					song13 = false;
+					thisSongPlaying.set(12, false);
 				}
 			}
 
