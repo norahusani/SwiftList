@@ -17,9 +17,7 @@ import javax.swing.JPanel;
 public class GUI extends JPanel {
 
 	static JFrame frame;
-	private JButton btn1, btn2, btn3;
-
-	// RandomSwiftList rand;
+	private JButton btn1, btn2;
 
 	public GUI() {
 		super();

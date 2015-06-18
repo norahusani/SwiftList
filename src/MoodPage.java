@@ -19,15 +19,12 @@ public class MoodPage extends JPanel {
 			label8, label9, label10, label11, label12, label13, label14,
 			label15;
 	public static MP3 mp3;
-	private static ArrayList<Integer> emotionsChosen;
+	private ArrayList<Integer> emotionsChosen;
 
 	public MoodPage(ArrayList<Integer> emotionsChosen) {
 		super();
 
 		this.emotionsChosen = emotionsChosen;
-		for (int i = 0; i < this.emotionsChosen.size(); i++) {
-			System.out.println(this.emotionsChosen.get(i));
-		}
 
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
@@ -158,7 +155,7 @@ public class MoodPage extends JPanel {
 		frame1.dispose();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public void main(String[] args) throws IOException {
 
 		frame1 = new JFrame("SwiftList");
 		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

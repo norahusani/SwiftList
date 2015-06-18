@@ -18,14 +18,12 @@ public class RandomSwiftList extends JPanel {
 	static JFrame frame1;
 	private JButton btn1, btn2;
 	private JLabel label1, label2;
-	public ArrayList<JButton> songButtons = new ArrayList<JButton>();
+	private ArrayList<JButton> songButtons = new ArrayList<JButton>();
 	private ArrayList<String> songTitles;
-	public ArrayList<Integer> ids = new ArrayList<Integer>();
+	private ArrayList<Integer> ids = new ArrayList<Integer>();
 	private JDBC db;
-	public static MP3 mp3 = new MP3();
-	boolean b2 = false;
+	private static MP3 mp3 = new MP3();
 	private ArrayList<Boolean> thisSongPlaying = new ArrayList<Boolean>();
-	private ArrayList<String> result;
 	private boolean songPlaying = false;
 
 	public RandomSwiftList() throws SQLException {
@@ -50,11 +48,6 @@ public class RandomSwiftList extends JPanel {
 		label2.setFont(label2.getFont().deriveFont(16f));
 		this.add(label2);
 
-		// for getting the song titles
-		db = new JDBC();
-		ResultSet rs = null;
-		rs = db.getSongTitleById(1);
-
 		// set up the buttons
 		btn1 = new JButton("HOME");
 		int buttonHeight = 50;
@@ -74,8 +67,8 @@ public class RandomSwiftList extends JPanel {
 		this.add(btn2);
 
 		ids = chooseRandomSongs();
-		songTitles = getSongTitles(ids);
-		createSongButtons(songTitles);
+		songTitles = getSongTitles();
+		createSongButtons();
 
 		// size of frame
 		setSize(300, 300);
@@ -102,8 +95,7 @@ public class RandomSwiftList extends JPanel {
 
 	}
 
-	private void createSongButtons(ArrayList<String> songTitles)
-			throws SQLException {
+	private void createSongButtons() throws SQLException {
 		int buttonHeight = 25;
 		int buttonWidth = 300;
 		int x = 340;
@@ -121,22 +113,19 @@ public class RandomSwiftList extends JPanel {
 		}
 	}
 
-	public ArrayList<String> getSongTitles(ArrayList<Integer> songIds) {
+	public ArrayList<String> getSongTitles() {
 		db = new JDBC();
-		// ResultSet rs = null;
 		ArrayList<String> temp = new ArrayList<String>();
 		for (int i = 0; i < 13; i++) {
 			ResultSet rs = null;
-			rs = db.getSongTitleById(songIds.get(i));
+			rs = db.getSongTitleById(ids.get(i));
 			try {
 				temp.add(rs.getString(1));
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return temp;
-
 	}
 
 	public ArrayList<Integer> chooseRandomSongs() {
@@ -148,7 +137,6 @@ public class RandomSwiftList extends JPanel {
 		try {
 			numOfSongs = rs.getInt(1);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int total = 0;
@@ -161,7 +149,6 @@ public class RandomSwiftList extends JPanel {
 			}
 		}
 		return result;
-
 	}
 
 	private void repaintButtons() {
@@ -192,7 +179,6 @@ public class RandomSwiftList extends JPanel {
 				try {
 					mp3.close();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -232,7 +218,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(0);
@@ -248,7 +233,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(0, false);
@@ -258,7 +242,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(1);
@@ -274,7 +257,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(1, false);
@@ -284,7 +266,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(2);
@@ -300,7 +281,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(2, false);
@@ -312,7 +292,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(3);
@@ -328,7 +307,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(3, false);
@@ -340,7 +318,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(4);
@@ -356,7 +333,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(4, false);
@@ -368,7 +344,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(5);
@@ -384,7 +359,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(5, false);
@@ -396,7 +370,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(6);
@@ -412,7 +385,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 
@@ -425,7 +397,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(7);
@@ -441,7 +412,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(7, false);
@@ -453,7 +423,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(8);
@@ -469,7 +438,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(8, false);
@@ -481,7 +449,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(9);
@@ -497,7 +464,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(9, false);
@@ -509,7 +475,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(10);
@@ -525,7 +490,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(10, false);
@@ -537,7 +501,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(11);
@@ -553,7 +516,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(11, false);
@@ -565,7 +527,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					unclickAllButtons(12);
@@ -581,7 +542,6 @@ public class RandomSwiftList extends JPanel {
 					try {
 						mp3.close();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					thisSongPlaying.set(12, false);
@@ -589,7 +549,6 @@ public class RandomSwiftList extends JPanel {
 			}
 
 			repaint();
-
 		}
 
 	}
