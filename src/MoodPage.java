@@ -23,6 +23,7 @@ public class MoodPage extends JPanel {
 	public static MP3 mp3;
 	private ArrayList<String> emotions = new ArrayList<String>();
 	private ArrayList<Integer> emotionsChosen;
+	private ArrayList<ArrayList<Integer>> listOfAllSongsWithEmotions = new ArrayList<ArrayList<Integer>>();
 
 	public MoodPage(ArrayList<Integer> emotionsChosen) {
 		super();
@@ -148,6 +149,17 @@ public class MoodPage extends JPanel {
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
 
+		// create list of all the songs that match the emotions
+		for (int i = 0; i < emotionsChosen.size(); i++) {
+			try {
+				listOfAllSongsWithEmotions
+						.add(findSongsWithEmotion(emotionsChosen.get(i)));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	public class ButtonResponder implements ActionListener {
@@ -177,7 +189,6 @@ public class MoodPage extends JPanel {
 
 	private ArrayList<Integer> findSongsWithEmotion(int emotionId)
 			throws SQLException {
-		System.out.println("In the method");
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		JDBC db = new JDBC();
 		String emotion = emotions.get(emotionId - 1);
@@ -186,7 +197,6 @@ public class MoodPage extends JPanel {
 
 		while (rs.next() == true) {
 			result.add(rs.getInt(1));
-			System.out.println(rs.getInt(1));
 		}
 
 		return result;
