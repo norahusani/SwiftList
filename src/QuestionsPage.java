@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -461,7 +462,12 @@ public class QuestionsPage extends JPanel {
 				MoodPage mood = new MoodPage(emotionsChosen);
 				mood.setVisible(true);
 				try {
-					mood.main(null);
+					try {
+						mood.main(null);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

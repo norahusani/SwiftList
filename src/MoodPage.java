@@ -23,6 +23,7 @@ public class MoodPage extends JPanel {
 	public static MP3 mp3;
 	private ArrayList<String> emotions = new ArrayList<String>();
 	private ArrayList<Integer> emotionsChosen;
+	private ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
 	private ArrayList<ArrayList<Integer>> listOfAllSongsWithEmotions = new ArrayList<ArrayList<Integer>>();
 
 	public MoodPage(ArrayList<Integer> emotionsChosen) {
@@ -149,15 +150,19 @@ public class MoodPage extends JPanel {
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
 
-		// create list of all the songs that match the emotions
-		for (int i = 0; i < emotionsChosen.size(); i++) {
-			try {
-				listOfAllSongsWithEmotions
-						.add(findSongsWithEmotion(emotionsChosen.get(i)));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		ArrayList<Integer> test = new ArrayList<Integer>();
+		test = findSongsWithEmotion(3);
+		// for (int i = 0; i < test.size(); i++) {
+		// System.out.println(test.get(i));
+		// }
+		try {
+			MapEmotionsToSongs();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = 0; i < songsToPlay.size(); i++) {
+			System.out.println(songsToPlay.get(i));
 		}
 
 	}
@@ -187,16 +192,20 @@ public class MoodPage extends JPanel {
 
 	}
 
-	private ArrayList<Integer> findSongsWithEmotion(int emotionId)
-			throws SQLException {
+	private ArrayList<Integer> findSongsWithEmotion(int emotionId) {
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		JDBC db = new JDBC();
 		String emotion = emotions.get(emotionId - 1);
 		ResultSet rs = db.executeQuery("SELECT SId FROM Moods WHERE " + emotion
 				+ " = 1");
 
-		while (rs.next() == true) {
-			result.add(rs.getInt(1));
+		try {
+			while (rs.next() == true) {
+				result.add(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return result;
@@ -206,7 +215,44 @@ public class MoodPage extends JPanel {
 		frame1.dispose();
 	}
 
-	public void main(String[] args) throws IOException {
+	private void MapEmotionsToSongs() throws SQLException {
+		// create list of all the songs that match the emotions
+		int size = 0;
+		boolean noSongsLeft = false;
+		if (emotionsChosen.size() <= 13)
+			size = emotionsChosen.size();
+		else
+			size = 13;
+		for (int i = 0; i < size; i++) {
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			list = findSongsWithEmotion(emotionsChosen.get(i));
+			listOfAllSongsWithEmotions.add(list);
+		}
+
+		while ((songsToPlay.size() < 13) && (noSongsLeft == false)) {
+			int count = 0;
+			for (int i = 0; i < listOfAllSongsWithEmotions.size(); i++) {
+				int s = listOfAllSongsWithEmotions.get(i).size();
+				int temp = (int) ((s - 1) * Math.random());
+				// check to make sure song isn't already added
+				if (!songsToPlay.contains(listOfAllSongsWithEmotions.get(i)
+						.get(temp))) {
+					songsToPlay
+							.add(listOfAllSongsWithEmotions.get(i).get(temp));
+					listOfAllSongsWithEmotions.get(i).remove(temp);
+				}
+				if (listOfAllSongsWithEmotions.get(i).size() == 0) {
+					count++;
+				}
+				if (count == listOfAllSongsWithEmotions.size()) {
+					noSongsLeft = true;
+				}
+			}
+		}
+
+	}
+
+	public void main(String[] args) throws IOException, SQLException {
 
 		frame1 = new JFrame("SwiftList");
 		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -217,12 +263,7 @@ public class MoodPage extends JPanel {
 		frame1.setVisible(true);
 		frame1.setResizable(true);
 
-		try {
-			findSongsWithEmotion(1);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		findSongsWithEmotion(1);
 		mp3 = new MP3();
 		mp3.play("");
 
