@@ -24,7 +24,7 @@ public class MoodPage extends JPanel {
 	private ArrayList<String> emotions = new ArrayList<String>();
 	private ArrayList<Integer> emotionsChosen;
 	private ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
-	private ArrayList<ArrayList<Integer>> listOfAllSongsWithEmotions = new ArrayList<ArrayList<Integer>>();
+	private ArrayList<Integer> listOfAllSongsWithEmotions = new ArrayList<Integer>();
 
 	public MoodPage(ArrayList<Integer> emotionsChosen) {
 		super();
@@ -226,22 +226,22 @@ public class MoodPage extends JPanel {
 		for (int i = 0; i < size; i++) {
 			ArrayList<Integer> list = new ArrayList<Integer>();
 			list = findSongsWithEmotion(emotionsChosen.get(i));
-			listOfAllSongsWithEmotions.add(list);
+			listOfAllSongsWithEmotions.addAll(list);
 		}
+		
+		System.out.println(listOfAllSongsWithEmotions);
 
-		while ((songsToPlay.size() < 13) && (noSongsLeft == false)) {
+		while ((noSongsLeft == false) && (songsToPlay.size() < 13) && listOfAllSongsWithEmotions.size() > 0) {
 			int count = 0;
 			for (int i = 0; i < listOfAllSongsWithEmotions.size(); i++) {
-				int s = listOfAllSongsWithEmotions.get(i).size();
+				int s = listOfAllSongsWithEmotions.size();
 				int temp = (int) ((s - 1) * Math.random());
 				// check to make sure song isn't already added
-				if (!songsToPlay.contains(listOfAllSongsWithEmotions.get(i)
-						.get(temp))) {
-					songsToPlay
-							.add(listOfAllSongsWithEmotions.get(i).get(temp));
-					listOfAllSongsWithEmotions.get(i).remove(temp);
+				if (!songsToPlay.contains(listOfAllSongsWithEmotions.get(temp))) {
+					songsToPlay.add(listOfAllSongsWithEmotions.get(temp));
+					listOfAllSongsWithEmotions.remove(temp);
 				}
-				if (listOfAllSongsWithEmotions.get(i).size() == 0) {
+				if (listOfAllSongsWithEmotions.size() == 0) {
 					count++;
 				}
 				if (count == listOfAllSongsWithEmotions.size()) {
@@ -249,6 +249,7 @@ public class MoodPage extends JPanel {
 				}
 			}
 		}
+		
 
 	}
 
