@@ -4,6 +4,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -19,12 +21,34 @@ public class MoodPage extends JPanel {
 			label8, label9, label10, label11, label12, label13, label14,
 			label15;
 	public static MP3 mp3;
+	private ArrayList<String> emotions = new ArrayList<String>();
 	private ArrayList<Integer> emotionsChosen;
 
 	public MoodPage(ArrayList<Integer> emotionsChosen) {
 		super();
 
 		this.emotionsChosen = emotionsChosen;
+
+		emotions.add("Happy");
+		emotions.add("Sad");
+		emotions.add("Mad");
+		emotions.add("Free");
+		emotions.add("Confused");
+		emotions.add("Frustrated");
+		emotions.add("Regretful");
+		emotions.add("Nostalgic");
+		emotions.add("Betrayed");
+		emotions.add("Lonely");
+		emotions.add("Empowered");
+		emotions.add("Afraid");
+		emotions.add("Vengeful");
+		emotions.add("Sarcastic");
+		emotions.add("Social");
+		emotions.add("Hopeful");
+		emotions.add("Desperate");
+		emotions.add("Foolish");
+		emotions.add("Amazed");
+		emotions.add("Brave");
 
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
@@ -151,6 +175,23 @@ public class MoodPage extends JPanel {
 
 	}
 
+	private ArrayList<Integer> findSongsWithEmotion(int emotionId)
+			throws SQLException {
+		System.out.println("In the method");
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		JDBC db = new JDBC();
+		String emotion = emotions.get(emotionId - 1);
+		ResultSet rs = db.executeQuery("SELECT SId FROM Moods WHERE " + emotion
+				+ " = 1");
+
+		while (rs.next() == true) {
+			result.add(rs.getInt(1));
+			System.out.println(rs.getInt(1));
+		}
+
+		return result;
+	}
+
 	private void CloseFrame() {
 		frame1.dispose();
 	}
@@ -166,6 +207,12 @@ public class MoodPage extends JPanel {
 		frame1.setVisible(true);
 		frame1.setResizable(true);
 
+		try {
+			findSongsWithEmotion(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		mp3 = new MP3();
 		mp3.play("");
 
