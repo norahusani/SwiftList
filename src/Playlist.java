@@ -1,11 +1,19 @@
 import jaco.mp3.player.MP3Player;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
 public class Playlist {
+
+	private static ArrayList<Integer> songsToPlay;
+
+	public Playlist(ArrayList<Integer> songsToPlay) {
+
+		this.songsToPlay = songsToPlay;
+	}
 
 	public static void main(String[] args) {
 
@@ -17,9 +25,10 @@ public class Playlist {
 
 		player.setRepeat(true);
 
-		player.addToPlayList(new File("resources/music/1.mp3"));
-		player.addToPlayList(new File("resources/music/2.mp3"));
-		player.addToPlayList(new File("resources/music/3.mp3"));
+		for (int i = 0; i < songsToPlay.size(); i++) {
+			player.addToPlayList(new File("resources/music/"
+					+ songsToPlay.get(i) + ".mp3"));
+		}
 
 		//
 
