@@ -17,7 +17,10 @@
  *
  *************************************************************************/
 
+import jaco.mp3.player.MP3Player;
+
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -95,7 +98,18 @@ public class MP3 {
 	// test client
 	public static void main(String[] args) throws IOException {
 
-		calculateSongLength("music/1.mp3");
+		// MP3Player player = new MP3Player();
+		//
+		// player.addToPlayList(new File("resources/music/1.mp3"));
+		// player.addToPlayList(new File("resources/music/2.mp3"));
+		//
+		// player.play();
+
+		File file1 = new File("resources/music/1.mp3");
+		File file2 = new File("resources/music/2.mp3");
+		File file3 = new File("resources/music/3.mp3");
+
+		new MP3Player(file1, file2, file3).play();
 	}
 
 }
