@@ -150,11 +150,6 @@ public class MoodPage extends JPanel {
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
 
-		ArrayList<Integer> test = new ArrayList<Integer>();
-		test = findSongsWithEmotion(3);
-		// for (int i = 0; i < test.size(); i++) {
-		// System.out.println(test.get(i));
-		// }
 		try {
 			MapEmotionsToSongs();
 		} catch (SQLException e) {
@@ -162,8 +157,9 @@ public class MoodPage extends JPanel {
 			e.printStackTrace();
 		}
 		for (int i = 0; i < songsToPlay.size(); i++) {
-			System.out.println(songsToPlay.get(i));
+			System.out.print(songsToPlay.get(i) + " ");
 		}
+		System.out.println();
 
 	}
 
@@ -242,9 +238,10 @@ public class MoodPage extends JPanel {
 					listOfAllSongsWithEmotions.get(i).remove(temp);
 				}
 				if (listOfAllSongsWithEmotions.get(i).size() == 0) {
+					listOfAllSongsWithEmotions.remove(i);
 					count++;
 				}
-				if (count == listOfAllSongsWithEmotions.size()) {
+				if (listOfAllSongsWithEmotions.size() == 0) {
 					noSongsLeft = true;
 				}
 			}
@@ -262,10 +259,6 @@ public class MoodPage extends JPanel {
 		frame1.setLocationRelativeTo(null);
 		frame1.setVisible(true);
 		frame1.setResizable(true);
-
-		findSongsWithEmotion(1);
-		mp3 = new MP3();
-		mp3.play("");
 
 	}
 
