@@ -16,10 +16,8 @@ import javax.swing.JPanel;
 public class MoodPage extends JPanel {
 
 	static JFrame frame1;
-	private JButton btn1;
-	private JLabel label1, label2, label3, label4, label5, label6, label7,
-			label8, label9, label10, label11, label12, label13, label14,
-			label15;
+	private JButton btn1, btn2;
+	private JLabel label1, label2;
 	public static MP3 mp3;
 	private ArrayList<String> emotions = new ArrayList<String>();
 	private ArrayList<Integer> emotionsChosen;
@@ -28,6 +26,8 @@ public class MoodPage extends JPanel {
 	private JDBC db;
 	private ArrayList<String> songTitles;
 	private ArrayList<JButton> songButtons = new ArrayList<JButton>();
+	private boolean songPlaying = false;
+	private ArrayList<Boolean> thisSongPlaying = new ArrayList<Boolean>();
 
 	public MoodPage(ArrayList<Integer> emotionsChosen) {
 		super();
@@ -69,71 +69,6 @@ public class MoodPage extends JPanel {
 		label2.setFont(label2.getFont().deriveFont(16f));
 		this.add(label2);
 
-		// label3 = new JLabel("Track 01:");
-		// label3.setBounds(455, 150, 700, 50);
-		// label3.setFont(label3.getFont().deriveFont(14f));
-		// this.add(label3);
-		//
-		// label4 = new JLabel("Track 02:");
-		// label4.setBounds(455, 170, 700, 50);
-		// label4.setFont(label4.getFont().deriveFont(14f));
-		// this.add(label4);
-		//
-		// label5 = new JLabel("Track 03:");
-		// label5.setBounds(455, 190, 700, 50);
-		// label5.setFont(label5.getFont().deriveFont(14f));
-		// this.add(label5);
-		//
-		// label6 = new JLabel("Track 04:");
-		// label6.setBounds(455, 210, 700, 50);
-		// label6.setFont(label6.getFont().deriveFont(14f));
-		// this.add(label6);
-		//
-		// label7 = new JLabel("Track 05:");
-		// label7.setBounds(455, 230, 700, 50);
-		// label7.setFont(label7.getFont().deriveFont(14f));
-		// this.add(label7);
-		//
-		// label8 = new JLabel("Track 06:");
-		// label8.setBounds(455, 250, 700, 50);
-		// label8.setFont(label8.getFont().deriveFont(14f));
-		// this.add(label8);
-		//
-		// label9 = new JLabel("Track 07:");
-		// label9.setBounds(455, 270, 700, 50);
-		// label9.setFont(label9.getFont().deriveFont(14f));
-		// this.add(label9);
-		//
-		// label10 = new JLabel("Track 08:");
-		// label10.setBounds(455, 290, 700, 50);
-		// label10.setFont(label10.getFont().deriveFont(14f));
-		// this.add(label10);
-		//
-		// label11 = new JLabel("Track 09:");
-		// label11.setBounds(455, 310, 700, 50);
-		// label11.setFont(label11.getFont().deriveFont(14f));
-		// this.add(label11);
-		//
-		// label12 = new JLabel("Track 10:");
-		// label12.setBounds(455, 330, 700, 50);
-		// label12.setFont(label12.getFont().deriveFont(14f));
-		// this.add(label12);
-		//
-		// label13 = new JLabel("Track 11:");
-		// label13.setBounds(455, 350, 700, 50);
-		// label13.setFont(label13.getFont().deriveFont(14f));
-		// this.add(label13);
-		//
-		// label14 = new JLabel("Track 12:");
-		// label14.setBounds(455, 370, 700, 50);
-		// label14.setFont(label14.getFont().deriveFont(14f));
-		// this.add(label14);
-		//
-		// label15 = new JLabel("Track 13:");
-		// label15.setBounds(455, 390, 700, 50);
-		// label15.setFont(label15.getFont().deriveFont(14f));
-		// this.add(label15);
-
 		// set up the buttons
 		btn1 = new JButton("HOME");
 		int buttonHeight = 50;
@@ -143,6 +78,14 @@ public class MoodPage extends JPanel {
 		btn1.setOpaque(true);
 		btn1.setBorder(null);
 		this.add(btn1);
+
+		btn2 = new JButton("PLAY MY SWIFTLIST!");
+		buttonWidth = 200;
+		btn2.setBounds(390, 90, buttonWidth, buttonHeight);
+		btn2.setBackground(new Color(206, 184, 95));
+		btn2.setOpaque(true);
+		btn2.setBorder(null);
+		this.add(btn2);
 
 		try {
 			MapEmotionsToSongs();
@@ -167,6 +110,14 @@ public class MoodPage extends JPanel {
 		// set up button action
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
+		btn2.addActionListener(br);
+		// for (int i = 0; i < songsToPlay.size(); i++) {
+		// songButtons.get(i).addActionListener(br);
+		// }
+		//
+		// for (int i = 0; i < songsToPlay.size(); i++) {
+		// thisSongPlaying.add(false);
+		// }
 
 	}
 
@@ -203,6 +154,20 @@ public class MoodPage extends JPanel {
 		}
 	}
 
+	private void repaintButtons() {
+		for (int i = 0; i < songButtons.size(); i++) {
+			songButtons.get(i).setBackground(new Color(50, 184, 95));
+		}
+	}
+
+	private void unclickAllButtons(int index) {
+		for (int i = 0; i < 13; i++) {
+			if (i != index)
+				thisSongPlaying.set(i, false);
+		}
+		repaintButtons();
+	}
+
 	public class ButtonResponder implements ActionListener {
 
 		@Override
@@ -219,6 +184,68 @@ public class MoodPage extends JPanel {
 				// } catch (IOException e1) {
 				// // TODO Auto-generated catch block
 				// e1.printStackTrace();
+				// }
+			} else if (e.getSource() == btn2) {
+				// eventually need to figure out how to loop music
+				// ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
+				// songsToPlay.add(1);
+				// songsToPlay.add(2);
+				// if (b2 == false) {
+				// b2 = true;
+				// mp3 = new MP3();
+				// for (int i = 0; i < songsToPlay.size(); i++) {
+				// mp3.play("music/" + songsToPlay.get(i) + ".mp3");
+				// synchronized (mp3) {
+				// try {
+				// mp3.wait(1000);
+				// } catch (InterruptedException e2) {
+				// // TODO Auto-generated catch block
+				// e2.printStackTrace();
+				// }
+				// }
+				// }
+				// } else {
+				// b2 = false;
+				// try {
+				// mp3.close();
+				// } catch (IOException e1) {
+				// // TODO Auto-generated catch block
+				// e1.printStackTrace();
+				// }
+				// }
+
+				// } else {
+				// for (int i = 0; i < songsToPlay.size(); i++) {
+				// if (e.getSource() == songButtons.get(i)) {
+				// if (songPlaying == true) {
+				// try {
+				// mp3.close();
+				// } catch (IOException e1) {
+				// e1.printStackTrace();
+				// }
+				// unclickAllButtons(i);
+				// songPlaying = false;
+				// }
+				// if (thisSongPlaying.get(i) == false) {
+				// songButtons.get(i).setBackground(
+				// new Color(206, 184, 95));
+				// System.out.println(i);
+				// System.out.println(songsToPlay.size());
+				// mp3.play("music/" + songsToPlay.get(i) + ".mp3");
+				// System.out.println("hello");
+				// thisSongPlaying.set(i, true);
+				// songPlaying = true;
+				// } else {
+				// songButtons.get(i).setBackground(
+				// new Color(50, 184, 95));
+				// try {
+				// mp3.close();
+				// } catch (IOException e1) {
+				// e1.printStackTrace();
+				// }
+				// thisSongPlaying.set(i, false);
+				// }
+				// }
 				// }
 			}
 
@@ -267,21 +294,26 @@ public class MoodPage extends JPanel {
 
 		while ((songsToPlay.size() < 13) && (noSongsLeft == false)) {
 			int count = 0;
+			boolean shouldAdd;
 			for (int i = 0; i < listOfAllSongsWithEmotions.size(); i++) {
 				int s = listOfAllSongsWithEmotions.get(i).size();
 				int temp = (int) ((s - 1) * Math.random());
 				// check to make sure song isn't already added
-				if (!songsToPlay.contains(listOfAllSongsWithEmotions.get(i)
-						.get(temp))) {
+				shouldAdd = !songsToPlay.contains(listOfAllSongsWithEmotions
+						.get(i).get(temp));
+				if (shouldAdd == true) {
 					songsToPlay
 							.add(listOfAllSongsWithEmotions.get(i).get(temp));
 					listOfAllSongsWithEmotions.get(i).remove(temp);
 				}
+				if (shouldAdd == false) {
+					count++;
+					listOfAllSongsWithEmotions.get(i).remove(temp);
+				}
 				if (listOfAllSongsWithEmotions.get(i).size() == 0) {
 					listOfAllSongsWithEmotions.remove(i);
-					count++;
 				}
-				if (listOfAllSongsWithEmotions.size() == 0) {
+				if ((listOfAllSongsWithEmotions.size() == 0) || count == 13) {
 					noSongsLeft = true;
 				}
 			}
