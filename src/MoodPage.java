@@ -25,6 +25,9 @@ public class MoodPage extends JPanel {
 	private ArrayList<Integer> emotionsChosen;
 	private ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
 	private ArrayList<ArrayList<Integer>> listOfAllSongsWithEmotions = new ArrayList<ArrayList<Integer>>();
+	private JDBC db;
+	private ArrayList<String> songTitles;
+	private ArrayList<JButton> songButtons = new ArrayList<JButton>();
 
 	public MoodPage(ArrayList<Integer> emotionsChosen) {
 		super();
@@ -66,70 +69,70 @@ public class MoodPage extends JPanel {
 		label2.setFont(label2.getFont().deriveFont(16f));
 		this.add(label2);
 
-		label3 = new JLabel("Track 01:");
-		label3.setBounds(455, 150, 700, 50);
-		label3.setFont(label3.getFont().deriveFont(14f));
-		this.add(label3);
-
-		label4 = new JLabel("Track 02:");
-		label4.setBounds(455, 170, 700, 50);
-		label4.setFont(label4.getFont().deriveFont(14f));
-		this.add(label4);
-
-		label5 = new JLabel("Track 03:");
-		label5.setBounds(455, 190, 700, 50);
-		label5.setFont(label5.getFont().deriveFont(14f));
-		this.add(label5);
-
-		label6 = new JLabel("Track 04:");
-		label6.setBounds(455, 210, 700, 50);
-		label6.setFont(label6.getFont().deriveFont(14f));
-		this.add(label6);
-
-		label7 = new JLabel("Track 05:");
-		label7.setBounds(455, 230, 700, 50);
-		label7.setFont(label7.getFont().deriveFont(14f));
-		this.add(label7);
-
-		label8 = new JLabel("Track 06:");
-		label8.setBounds(455, 250, 700, 50);
-		label8.setFont(label8.getFont().deriveFont(14f));
-		this.add(label8);
-
-		label9 = new JLabel("Track 07:");
-		label9.setBounds(455, 270, 700, 50);
-		label9.setFont(label9.getFont().deriveFont(14f));
-		this.add(label9);
-
-		label10 = new JLabel("Track 08:");
-		label10.setBounds(455, 290, 700, 50);
-		label10.setFont(label10.getFont().deriveFont(14f));
-		this.add(label10);
-
-		label11 = new JLabel("Track 09:");
-		label11.setBounds(455, 310, 700, 50);
-		label11.setFont(label11.getFont().deriveFont(14f));
-		this.add(label11);
-
-		label12 = new JLabel("Track 10:");
-		label12.setBounds(455, 330, 700, 50);
-		label12.setFont(label12.getFont().deriveFont(14f));
-		this.add(label12);
-
-		label13 = new JLabel("Track 11:");
-		label13.setBounds(455, 350, 700, 50);
-		label13.setFont(label13.getFont().deriveFont(14f));
-		this.add(label13);
-
-		label14 = new JLabel("Track 12:");
-		label14.setBounds(455, 370, 700, 50);
-		label14.setFont(label14.getFont().deriveFont(14f));
-		this.add(label14);
-
-		label15 = new JLabel("Track 13:");
-		label15.setBounds(455, 390, 700, 50);
-		label15.setFont(label15.getFont().deriveFont(14f));
-		this.add(label15);
+		// label3 = new JLabel("Track 01:");
+		// label3.setBounds(455, 150, 700, 50);
+		// label3.setFont(label3.getFont().deriveFont(14f));
+		// this.add(label3);
+		//
+		// label4 = new JLabel("Track 02:");
+		// label4.setBounds(455, 170, 700, 50);
+		// label4.setFont(label4.getFont().deriveFont(14f));
+		// this.add(label4);
+		//
+		// label5 = new JLabel("Track 03:");
+		// label5.setBounds(455, 190, 700, 50);
+		// label5.setFont(label5.getFont().deriveFont(14f));
+		// this.add(label5);
+		//
+		// label6 = new JLabel("Track 04:");
+		// label6.setBounds(455, 210, 700, 50);
+		// label6.setFont(label6.getFont().deriveFont(14f));
+		// this.add(label6);
+		//
+		// label7 = new JLabel("Track 05:");
+		// label7.setBounds(455, 230, 700, 50);
+		// label7.setFont(label7.getFont().deriveFont(14f));
+		// this.add(label7);
+		//
+		// label8 = new JLabel("Track 06:");
+		// label8.setBounds(455, 250, 700, 50);
+		// label8.setFont(label8.getFont().deriveFont(14f));
+		// this.add(label8);
+		//
+		// label9 = new JLabel("Track 07:");
+		// label9.setBounds(455, 270, 700, 50);
+		// label9.setFont(label9.getFont().deriveFont(14f));
+		// this.add(label9);
+		//
+		// label10 = new JLabel("Track 08:");
+		// label10.setBounds(455, 290, 700, 50);
+		// label10.setFont(label10.getFont().deriveFont(14f));
+		// this.add(label10);
+		//
+		// label11 = new JLabel("Track 09:");
+		// label11.setBounds(455, 310, 700, 50);
+		// label11.setFont(label11.getFont().deriveFont(14f));
+		// this.add(label11);
+		//
+		// label12 = new JLabel("Track 10:");
+		// label12.setBounds(455, 330, 700, 50);
+		// label12.setFont(label12.getFont().deriveFont(14f));
+		// this.add(label12);
+		//
+		// label13 = new JLabel("Track 11:");
+		// label13.setBounds(455, 350, 700, 50);
+		// label13.setFont(label13.getFont().deriveFont(14f));
+		// this.add(label13);
+		//
+		// label14 = new JLabel("Track 12:");
+		// label14.setBounds(455, 370, 700, 50);
+		// label14.setFont(label14.getFont().deriveFont(14f));
+		// this.add(label14);
+		//
+		// label15 = new JLabel("Track 13:");
+		// label15.setBounds(455, 390, 700, 50);
+		// label15.setFont(label15.getFont().deriveFont(14f));
+		// this.add(label15);
 
 		// set up the buttons
 		btn1 = new JButton("HOME");
@@ -141,6 +144,21 @@ public class MoodPage extends JPanel {
 		btn1.setBorder(null);
 		this.add(btn1);
 
+		try {
+			MapEmotionsToSongs();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		songTitles = getSongTitles();
+		try {
+			createSongButtons();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		// size of frame
 		setSize(300, 300);
 		setVisible(true);
@@ -150,17 +168,39 @@ public class MoodPage extends JPanel {
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
 
-		try {
-			MapEmotionsToSongs();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for (int i = 0; i < songsToPlay.size(); i++) {
-			System.out.print(songsToPlay.get(i) + " ");
-		}
-		System.out.println();
+	}
 
+	public ArrayList<String> getSongTitles() {
+		db = new JDBC();
+		ArrayList<String> temp = new ArrayList<String>();
+		for (int i = 0; i < songsToPlay.size(); i++) {
+			ResultSet rs = null;
+			rs = db.getSongTitleById(songsToPlay.get(i));
+			try {
+				temp.add(rs.getString(1));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return temp;
+	}
+
+	private void createSongButtons() throws SQLException {
+		int buttonHeight = 25;
+		int buttonWidth = 300;
+		int x = 340;
+		int y = 160;
+		JButton temp = new JButton();
+		for (int i = 0; i < songsToPlay.size(); i++) {
+			temp = new JButton("Track " + (i + 1) + ": " + songTitles.get(i));
+			temp.setBounds(x, y, buttonWidth, buttonHeight);
+			temp.setBackground(new Color(50, 184, 95));
+			temp.setOpaque(true);
+			temp.setBorder(null);
+			songButtons.add(temp);
+			this.add(songButtons.get(i));
+			y += 40;
+		}
 	}
 
 	public class ButtonResponder implements ActionListener {
@@ -174,12 +214,12 @@ public class MoodPage extends JPanel {
 				home.setVisible(true);
 				home.main(null);
 				CloseFrame();
-				try {
-					mp3.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				// try {
+				// mp3.close();
+				// } catch (IOException e1) {
+				// // TODO Auto-generated catch block
+				// e1.printStackTrace();
+				// }
 			}
 
 			repaint();
