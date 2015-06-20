@@ -111,13 +111,13 @@ public class MoodPage extends JPanel {
 		ButtonResponder br = new ButtonResponder();
 		btn1.addActionListener(br);
 		btn2.addActionListener(br);
-		// for (int i = 0; i < songsToPlay.size(); i++) {
-		// songButtons.get(i).addActionListener(br);
-		// }
-		//
-		// for (int i = 0; i < songsToPlay.size(); i++) {
-		// thisSongPlaying.add(false);
-		// }
+		for (int i = 0; i < songsToPlay.size(); i++) {
+			songButtons.get(i).addActionListener(br);
+		}
+
+		for (int i = 0; i < songsToPlay.size(); i++) {
+			thisSongPlaying.add(false);
+		}
 
 	}
 
@@ -214,39 +214,39 @@ public class MoodPage extends JPanel {
 				// }
 				// }
 
-				// } else {
-				// for (int i = 0; i < songsToPlay.size(); i++) {
-				// if (e.getSource() == songButtons.get(i)) {
-				// if (songPlaying == true) {
-				// try {
-				// mp3.close();
-				// } catch (IOException e1) {
-				// e1.printStackTrace();
-				// }
-				// unclickAllButtons(i);
-				// songPlaying = false;
-				// }
-				// if (thisSongPlaying.get(i) == false) {
-				// songButtons.get(i).setBackground(
-				// new Color(206, 184, 95));
-				// System.out.println(i);
-				// System.out.println(songsToPlay.size());
-				// mp3.play("music/" + songsToPlay.get(i) + ".mp3");
-				// System.out.println("hello");
-				// thisSongPlaying.set(i, true);
-				// songPlaying = true;
-				// } else {
-				// songButtons.get(i).setBackground(
-				// new Color(50, 184, 95));
-				// try {
-				// mp3.close();
-				// } catch (IOException e1) {
-				// e1.printStackTrace();
-				// }
-				// thisSongPlaying.set(i, false);
-				// }
-				// }
-				// }
+			} else {
+				for (int i = 0; i < songsToPlay.size(); i++) {
+					if (e.getSource() == songButtons.get(i)) {
+						if (songPlaying == true) {
+							try {
+								mp3.close();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							unclickAllButtons(i);
+							songPlaying = false;
+						}
+						if (thisSongPlaying.get(i) == false) {
+							songButtons.get(i).setBackground(
+									new Color(206, 184, 95));
+							System.out.println(i);
+							System.out.println(songsToPlay.size());
+							mp3.play("music/" + songsToPlay.get(i) + ".mp3");
+							System.out.println("hello");
+							thisSongPlaying.set(i, true);
+							songPlaying = true;
+						} else {
+							songButtons.get(i).setBackground(
+									new Color(50, 184, 95));
+							try {
+								mp3.close();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							thisSongPlaying.set(i, false);
+						}
+					}
+				}
 			}
 
 			repaint();
