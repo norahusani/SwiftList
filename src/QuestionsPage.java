@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -21,9 +21,34 @@ public class QuestionsPage extends JPanel {
 	private JLabel label1, label2;
 	public static MP3 mp3;
 	private ArrayList<Boolean> emotionsClicked = new ArrayList<Boolean>();
+	ArrayList<Integer> emotionsChosen = new ArrayList<Integer>();
+	private ArrayList<ArrayList<Integer>> listOfAllSongsWithEmotions = new ArrayList<ArrayList<Integer>>();
+	private ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
+	private ArrayList<String> emotions = new ArrayList<String>();
 
 	public QuestionsPage() {
 		super();
+
+		emotions.add("Happy");
+		emotions.add("Sad");
+		emotions.add("Mad");
+		emotions.add("Free");
+		emotions.add("Confused");
+		emotions.add("Frustrated");
+		emotions.add("Regretful");
+		emotions.add("Nostalgic");
+		emotions.add("Betrayed");
+		emotions.add("Lonely");
+		emotions.add("Empowered");
+		emotions.add("Afraid");
+		emotions.add("Vengeful");
+		emotions.add("Sarcastic");
+		emotions.add("Social");
+		emotions.add("Hopeful");
+		emotions.add("Desperate");
+		emotions.add("Foolish");
+		emotions.add("Amazed");
+		emotions.add("Brave");
 
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
@@ -38,11 +63,13 @@ public class QuestionsPage extends JPanel {
 				"How are you feeling? Click as many emotions that currently apply:");
 		label2.setBounds(260, 50, 700, 100);
 		label2.setFont(label2.getFont().deriveFont(16f));
+		label2.setForeground(Color.WHITE);
 		this.add(label2);
 
 		label1 = new JLabel("T-swift songs based on your mood!");
 		label1.setBounds(320, 0, 500, 100);
 		label1.setFont(label1.getFont().deriveFont(24f));
+		label1.setForeground(Color.WHITE);
 		this.add(label1);
 
 		// set up the buttons
@@ -259,6 +286,68 @@ public class QuestionsPage extends JPanel {
 
 	}
 
+	private void MapEmotionsToSongs() throws SQLException {
+		// create list of all the songs that match the emotions
+		int size = 0;
+		boolean noSongsLeft = false;
+		if (emotionsChosen.size() <= 13)
+			size = emotionsChosen.size();
+		else
+			size = 13;
+		for (int i = 0; i < size; i++) {
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			list = findSongsWithEmotion(emotionsChosen.get(i));
+			listOfAllSongsWithEmotions.add(list);
+		}
+
+		while ((songsToPlay.size() < 13) && (noSongsLeft == false)) {
+			int count = 0;
+			boolean shouldAdd;
+			for (int i = 0; i < listOfAllSongsWithEmotions.size(); i++) {
+				int s = listOfAllSongsWithEmotions.get(i).size();
+				int temp = (int) ((s - 1) * Math.random());
+				// check to make sure song isn't already added
+				shouldAdd = !songsToPlay.contains(listOfAllSongsWithEmotions
+						.get(i).get(temp));
+				if (shouldAdd == true) {
+					songsToPlay
+							.add(listOfAllSongsWithEmotions.get(i).get(temp));
+					listOfAllSongsWithEmotions.get(i).remove(temp);
+				}
+				if (shouldAdd == false) {
+					count++;
+					listOfAllSongsWithEmotions.get(i).remove(temp);
+				}
+				if (listOfAllSongsWithEmotions.get(i).size() == 0) {
+					listOfAllSongsWithEmotions.remove(i);
+				}
+				if ((listOfAllSongsWithEmotions.size() == 0) || count == 13) {
+					noSongsLeft = true;
+				}
+			}
+		}
+
+	}
+
+	private ArrayList<Integer> findSongsWithEmotion(int emotionId) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		JDBC db = new JDBC();
+		String emotion = emotions.get(emotionId - 1);
+		ResultSet rs = db.executeQuery("SELECT SId FROM Moods WHERE " + emotion
+				+ " = 1");
+
+		try {
+			while (rs.next() == true) {
+				result.add(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
 	public class ButtonResponder implements ActionListener {
 
 		@Override
@@ -453,25 +542,33 @@ public class QuestionsPage extends JPanel {
 			}
 			if (e.getSource() == btn22) {
 				// create an array list of all the chosen emotions
-				ArrayList<Integer> emotionsChosen = new ArrayList<Integer>();
 				for (int i = 0; i < emotionsClicked.size(); i++) {
 					if (emotionsClicked.get(i) == true) {
 						emotionsChosen.add(i + 1);
 					}
 				}
-				MoodPage mood = new MoodPage(emotionsChosen);
-				mood.setVisible(true);
 				try {
-					try {
-						mood.main(null);
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				} catch (IOException e1) {
+					MapEmotionsToSongs();
+				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
 				}
+				Playlist play = new Playlist(songsToPlay, false);
+				play.setVisible(true);
+				play.main(null);
+				// MoodPage mood = new MoodPage(emotionsChosen);
+				// mood.setVisible(true);
+				// try {
+				// try {
+				// mood.main(null);
+				// } catch (SQLException e1) {
+				// // TODO Auto-generated catch block
+				// e1.printStackTrace();
+				// }
+				// } catch (IOException e1) {
+				// // TODO Auto-generated catch block
+				// e1.printStackTrace();
+				// }
 				CloseFrame();
 				repaint();
 			}

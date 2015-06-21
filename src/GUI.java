@@ -107,7 +107,7 @@ public class GUI extends JPanel {
 				// rand = new RandomSwiftList();
 				// rand.setVisible(true);
 				// rand.main(null);
-				Playlist play = new Playlist(songsToPlay);
+				Playlist play = new Playlist(songsToPlay, true);
 				play.setVisible(true);
 				play.main(null);
 

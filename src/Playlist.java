@@ -26,26 +26,39 @@ public class Playlist extends JPanel {
 	private ArrayList<String> songTitles;
 	private JDBC db;
 	int currentSong;
+	static boolean random;
 
-	public Playlist(ArrayList<Integer> songsToPlay) {
+	public Playlist(ArrayList<Integer> songsToPlay, boolean random) {
 
 		super();
 
 		this.songsToPlay = songsToPlay;
+		this.random = random;
 		currentSong = 0;
 
 		FlowLayout experimentLayout = new FlowLayout();
 		this.setLayout(experimentLayout);
+		String labelText;
+		int bounds;
+		if (random == false) {
+			labelText = "Please enjoy your SwiftList based on your mood!";
+			bounds = 265;
+		} else {
+			labelText = "Please enjoy your random SwiftList";
+			bounds = 325;
+		}
 
 		// set up label
-		label1 = new JLabel("Please enjoy your random SwiftList!");
-		label1.setBounds(325, 15, 700, 50);
+		label1 = new JLabel(labelText);
+		label1.setBounds(bounds, 15, 700, 50);
 		label1.setFont(label1.getFont().deriveFont(20f));
+		label1.setForeground(Color.WHITE);
 		this.add(label1);
 
 		label2 = new JLabel("(13 songs of course!)");
 		label2.setBounds(410, 45, 700, 50);
 		label2.setFont(label2.getFont().deriveFont(16f));
+		label2.setForeground(Color.WHITE);
 		this.add(label2);
 
 		// set up the buttons
@@ -144,15 +157,6 @@ public class Playlist extends JPanel {
 		songButtons.get(11).addActionListener(br);
 		songButtons.get(12).addActionListener(br);
 
-		// player.setBorder(BorderFactory.createEmptyBorder(100, 100, 50, 100));
-		// frame = new JFrame("SwiftList");
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// frame.setBounds(300, 500, 1000, 700);
-		// frame.setBackground(new Color(100, 0, 60));
-		// // frame.getContentPane().add(player);
-		// frame.setLocationRelativeTo(null);
-		// frame.setVisible(true);
-
 	}
 
 	private void createSongButtons() throws SQLException {
@@ -232,7 +236,7 @@ public class Playlist extends JPanel {
 				if (currentSong > 0)
 					currentSong--;
 				else
-					currentSong = 13;
+					currentSong = 12;
 			}
 
 			repaintButtons();
@@ -261,7 +265,7 @@ public class Playlist extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(300, 500, 1000, 700);
 		frame.setBackground(new Color(100, 0, 60));
-		frame.add(new Playlist(songsToPlay));
+		frame.add(new Playlist(songsToPlay, random));
 		// frame.getContentPane().add(player);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
