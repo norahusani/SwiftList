@@ -238,6 +238,30 @@ public class Playlist extends JPanel {
 				else
 					currentSong = 12;
 			}
+			for (int i = 0; i < songsToPlay.size(); i++) {
+				if (e.getSource() == songButtons.get(i)) {
+					int move = 0;
+					boolean backward;
+					repaintButtons();
+					if (currentSong > i) {
+						backward = true;
+					} else {
+						backward = false;
+					}
+					move = Math.abs(currentSong - i);
+					if (!(player.isStopped() || player.isPaused()))
+						player.stop();
+					else
+						player.play();
+					for (int j = 0; j < move; j++) {
+						if (backward == true)
+							player.skipBackward();
+						else
+							player.skipForward();
+					}
+					currentSong = i;
+				}
+			}
 
 			repaintButtons();
 			songButtons.get(currentSong).setBackground(new Color(206, 184, 95));
@@ -255,7 +279,11 @@ public class Playlist extends JPanel {
 	}
 
 	private void CloseFrame() {
-		frame.dispose();
+		try {
+			frame.dispose();
+		} catch (Exception e) {
+
+		}
 	}
 
 	public static void main(String[] args) {
