@@ -195,6 +195,9 @@ public class Playlist extends JPanel {
 
 			// home
 			if (e.getSource() == btn1) {
+				if (!(player.isPaused() || player.isStopped())) {
+					player.stop();
+				}
 				RandomSwiftList rand;
 				GUI home = new GUI();
 				home.setVisible(true);
@@ -253,16 +256,12 @@ public class Playlist extends JPanel {
 
 	public static void main(String[] args) {
 
-		ArrayList<Integer> songs = new ArrayList<Integer>();
-		for (int i = 0; i < 13; i++) {
-			songs.add(i + 1);
-		}
 		// new Playlist(songs);
 		JFrame frame = new JFrame("SwiftList");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(300, 500, 1000, 700);
 		frame.setBackground(new Color(100, 0, 60));
-		frame.add(new Playlist(songs));
+		frame.add(new Playlist(songsToPlay));
 		// frame.getContentPane().add(player);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);

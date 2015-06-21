@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -18,6 +20,7 @@ public class GUI extends JPanel {
 
 	static JFrame frame;
 	private JButton btn1, btn2;
+	private JDBC db;
 
 	public GUI() {
 		super();
@@ -69,6 +72,29 @@ public class GUI extends JPanel {
 
 	}
 
+	public ArrayList<Integer> chooseRandomSongs() {
+		db = new JDBC();
+		ResultSet rs = null;
+		rs = db.executeQuery("SELECT COUNT(Id) FROM Songs");
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		int numOfSongs = 0;
+		try {
+			numOfSongs = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		int total = 0;
+		int temp;
+		while (total < 13) {
+			temp = (int) (numOfSongs * Math.random() + 1);
+			if (!result.contains(temp)) {
+				result.add(temp);
+				total++;
+			}
+		}
+		return result;
+	}
+
 	public class ButtonResponder implements ActionListener {
 
 		@Override
@@ -76,18 +102,14 @@ public class GUI extends JPanel {
 
 			if (e.getSource() == btn1) {
 
-				RandomSwiftList rand;
-				try {
-					rand = new RandomSwiftList();
-					rand.setVisible(true);
-					rand.main(null);
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
+				songsToPlay = chooseRandomSongs();
+				// rand = new RandomSwiftList();
+				// rand.setVisible(true);
+				// rand.main(null);
+				Playlist play = new Playlist(songsToPlay);
+				play.setVisible(true);
+				play.main(null);
 
 				CloseFrame();
 
