@@ -184,7 +184,7 @@ public class RandomSwiftList extends JPanel {
 
 			} else if (e.getSource() == btn2) {
 
-				Playlist play = new Playlist(ids);
+				Playlist play = new Playlist(ids, true);
 				play.main(null);
 				// eventually need to figure out how to loop music
 				// ArrayList<Integer> songsToPlay = new ArrayList<Integer>();
